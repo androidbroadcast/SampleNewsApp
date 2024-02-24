@@ -24,3 +24,5 @@ include(":app")
 include(":newsapi")
 include(":database")
 include(":news-data")
+
+include(":features:news-main")
