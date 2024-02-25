@@ -12,6 +12,7 @@ import dev.androidbroadcast.newsapi.models.SortBy
 import dev.androidbroadcast.newsapi.utils.NewsApiKeyInterceptor
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.create
@@ -53,7 +54,7 @@ private fun retrofit(
     okHttpClient: OkHttpClient?,
     json: Json,
 ): Retrofit {
-    val jsonConverterFactory = json.asConverterFactory(MediaType.get("application/json"))
+    val jsonConverterFactory = json.asConverterFactory("application/json".toMediaType())
 
     val modifiedOkHttpClient = (okHttpClient?.newBuilder() ?: OkHttpClient.Builder())
         .addInterceptor(NewsApiKeyInterceptor(apiKey))
