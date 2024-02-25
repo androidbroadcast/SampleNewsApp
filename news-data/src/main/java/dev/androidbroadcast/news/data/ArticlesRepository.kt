@@ -6,6 +6,7 @@ import dev.androidbroadcast.news.database.models.ArticleDBO
 import dev.androidbroadcast.newsapi.NewsApi
 import dev.androidbroadcast.newsapi.models.ArticleDTO
 import dev.androidbroadcast.newsapi.models.ResponseDTO
+import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.catch
@@ -17,7 +18,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.onEach
 
-class ArticlesRepository(
+class ArticlesRepository @Inject constructor(
     private val database: NewsDatabase,
     private val api: NewsApi,
 ) {
