@@ -1,4 +1,4 @@
-package dev.androidbroadcast.newssearchapp.ui.theme
+package dev.androidbroadcast.news
 
 import androidx.compose.ui.graphics.Color
 

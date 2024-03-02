@@ -12,7 +12,7 @@ data class ArticleDTO(
     @SerialName("title") val title: String,
     @SerialName("description") val description: String,
     @SerialName("url") val url: String,
-    @SerialName("urlToImage") val urlToImage: String,
+    @SerialName("urlToImage") val urlToImage: String?,
     @[SerialName("publishedAt") Serializable(with = DateTimeUTCSerializer::class)] val publishedAt: Date,
     @SerialName("content") val content: String,
 )

@@ -7,7 +7,11 @@ internal class NewsApiKeyInterceptor(private val apikey: String) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request().newBuilder()
-            .addHeader("X-Api-Key", apikey)
+            .url(
+                chain.request().url.newBuilder()
+                    .addQueryParameter("apiKey", apikey)
+                    .build()
+            )
             .build()
         return chain.proceed(request)
     }

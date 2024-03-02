@@ -27,3 +27,4 @@ include(":news-data")
 
 include(":features:news-main")
 include(":news-common")
+include(":news-uikit")

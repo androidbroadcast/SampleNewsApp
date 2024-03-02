@@ -60,6 +60,7 @@ dependencies {
     implementation(libs.koltinx.coroutines.android)
 
     implementation(project(":news-data"))
+    implementation(project(":news-uikit"))
 
     implementation(libs.dagger.hilt.android)
     kapt(libs.dagger.hilt.compiler)

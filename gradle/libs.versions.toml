@@ -67,6 +67,7 @@ dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = 
 dagger-main = { module = "com.google.dagger:dagger", version.ref = "dagger" }
 
 okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+okhttp-logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
 
 # На стриме использовал Jakarta Inject, но оно не будет работать с Dagger. Надо использовать JavaX Inject
 javax-inject = { module = "javax.inject:javax.inject", version.ref = "javax-inject" }
