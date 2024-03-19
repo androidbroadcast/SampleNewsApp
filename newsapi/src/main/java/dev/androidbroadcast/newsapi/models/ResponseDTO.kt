@@ -3,7 +3,6 @@ package dev.androidbroadcast.newsapi.models
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-
 @Serializable
 data class ResponseDTO<E>(
     @SerialName("status") val status: String,

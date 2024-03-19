@@ -16,7 +16,7 @@ data class ArticleDBO(
     @ColumnInfo("urlToImage") val urlToImage: String?,
     @ColumnInfo("publishedAt") val publishedAt: Date,
     @ColumnInfo("content") val content: String,
-    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    @PrimaryKey(autoGenerate = true) val id: Long = 0
 )
 
 data class Source(

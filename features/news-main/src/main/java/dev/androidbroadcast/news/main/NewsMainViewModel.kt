@@ -12,15 +12,18 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 @HiltViewModel
-internal class NewsMainViewModel @Inject constructor(
-    getAllArticlesUseCase: Provider<GetAllArticlesUseCase>,
+internal class NewsMainViewModel
+@Inject
+constructor(
+    getAllArticlesUseCase: Provider<GetAllArticlesUseCase>
 ) : ViewModel() {
-
-    val state: StateFlow<State> = getAllArticlesUseCase.get().invoke(query = "android")
-        .map { it.toState() }
-        .stateIn(viewModelScope, SharingStarted.Lazily, State.None)
+    val state: StateFlow<State> =
+        getAllArticlesUseCase.get().invoke(query = "android")
+            .map { it.toState() }
+            .stateIn(viewModelScope, SharingStarted.Lazily, State.None)
 
     fun forceUpdate() {
+        TODO("Will not be implemented")
     }
 }
 
@@ -33,9 +36,11 @@ private fun RequestResult<List<ArticleUI>>.toState(): State {
 }
 
 internal sealed class State(val articles: List<ArticleUI>?) {
-
     data object None : State(articles = null)
+
     class Loading(articles: List<ArticleUI>? = null) : State(articles)
+
     class Error(articles: List<ArticleUI>? = null) : State(articles)
+
     class Success(articles: List<ArticleUI>) : State(articles)
 }

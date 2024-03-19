@@ -22,8 +22,9 @@ room = "2.6.1"
 ksp = "1.9.22-1.0.17"
 dagger = "2.50"
 javax-inject = "1"
-okhttp ="4.12.0"
-coil ="2.6.0"
+okhttp = "4.12.0"
+coil = "2.6.0"
+detekt = "1.23.3"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -56,9 +57,9 @@ retrofit-adapters-result = { module = "com.github.skydoves:retrofit-adapters-res
 retrofit-converter-kotlinx-serialization = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofitConverterKotlinxSerialization" }
 
 koltinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
-koltinx-coroutines-android  = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
+koltinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
 
-koltinx-serialization-json  = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serialization-json" }
+koltinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serialization-json" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
@@ -76,6 +77,8 @@ javax-inject = { module = "javax.inject:javax.inject", version.ref = "javax-inje
 coil-core = { module = "io.coil-kt:coil", version.ref = "coil" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 
+detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
+
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
@@ -86,4 +89,4 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "dagger" }
 kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 androidx-room = { id = "androidx.room", version.ref = "room" }
-
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }

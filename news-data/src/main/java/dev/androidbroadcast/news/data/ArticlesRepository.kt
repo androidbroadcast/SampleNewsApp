@@ -7,7 +7,6 @@ import dev.androidbroadcast.news.database.models.ArticleDBO
 import dev.androidbroadcast.newsapi.NewsApi
 import dev.androidbroadcast.newsapi.models.ArticleDTO
 import dev.androidbroadcast.newsapi.models.ResponseDTO
-import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.catch
@@ -18,20 +17,20 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.onErrorReturn
+import javax.inject.Inject
 
-class ArticlesRepository @Inject constructor(
+class ArticlesRepository
+@Inject constructor(
     private val database: NewsDatabase,
     private val api: NewsApi,
-    private val logger: Logger,
+    private val logger: Logger
 ) {
-
     /**
      * Получение актуальных новостей с отслеживанием состояния запроса ("Обновляется", "Успшено", "Ошибка")
      */
     fun getAll(
         query: String,
-        mergeStrategy: MergeStrategy<RequestResult<List<Article>>> = RequestResponseMergeStrategy(),
+        mergeStrategy: MergeStrategy<RequestResult<List<Article>>> = RequestResponseMergeStrategy()
     ): Flow<RequestResult<List<Article>>> {
         val cachedAllArticles: Flow<RequestResult<List<Article>>> = gelAllFromDatabase()
         val remoteArticles: Flow<RequestResult<List<Article>>> = getAllFromServer(query)
@@ -49,20 +48,21 @@ class ArticlesRepository @Inject constructor(
     }
 
     private fun getAllFromServer(query: String): Flow<RequestResult<List<Article>>> {
-        val apiRequest = flow { emit(api.everything(query = query)) }
-            .onEach { result ->
-                // Если запрос прошел успешно, сохраняем данные в локальный кэш (БД)
-                if (result.isSuccess) saveArticlesToCache(result.getOrThrow().articles)
-            }
-            .onEach { result ->
-                if (result.isFailure) {
-                    logger.e(
-                        LOG_TAG,
-                        "Error getting data from server. Cause = ${result.exceptionOrNull()}"
-                    )
+        val apiRequest =
+            flow { emit(api.everything(query = query)) }
+                .onEach { result ->
+                    // Если запрос прошел успешно, сохраняем данные в локальный кэш (БД)
+                    if (result.isSuccess) saveArticlesToCache(result.getOrThrow().articles)
                 }
-            }
-            .map { it.toRequestResult() }
+                .onEach { result ->
+                    if (result.isFailure) {
+                        logger.e(
+                            LOG_TAG,
+                            "Error getting data from server. Cause = ${result.exceptionOrNull()}"
+                        )
+                    }
+                }
+                .map { it.toRequestResult() }
 
         val start = flowOf<RequestResult<ResponseDTO<ArticleDTO>>>(RequestResult.InProgress())
         return merge(apiRequest, start)
@@ -77,12 +77,13 @@ class ArticlesRepository @Inject constructor(
     }
 
     private fun gelAllFromDatabase(): Flow<RequestResult<List<Article>>> {
-        val dbRequest = database.articlesDao::getAll.asFlow()
-            .map<List<ArticleDBO>, RequestResult<List<ArticleDBO>>> { RequestResult.Success(it) }
-            .catch {
-                logger.e(LOG_TAG, "Error getting from database. Cause = $it")
-                emit(RequestResult.Error(error = it))
-            }
+        val dbRequest =
+            database.articlesDao::getAll.asFlow()
+                .map<List<ArticleDBO>, RequestResult<List<ArticleDBO>>> { RequestResult.Success(it) }
+                .catch {
+                    logger.e(LOG_TAG, "Error getting from database. Cause = $it")
+                    emit(RequestResult.Error(error = it))
+                }
 
         val start = flowOf<RequestResult<List<ArticleDBO>>>(RequestResult.InProgress())
 
@@ -92,7 +93,6 @@ class ArticlesRepository @Inject constructor(
     }
 
     private companion object {
-
         const val LOG_TAG = "ArticlesRepository"
     }
 }

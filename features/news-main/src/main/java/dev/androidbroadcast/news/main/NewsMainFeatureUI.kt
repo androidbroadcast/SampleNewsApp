@@ -3,18 +3,14 @@ package dev.androidbroadcast.news.main
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -65,6 +61,7 @@ private fun NewsMainContent(currentState: State) {
     }
 }
 
+@Suppress("UNUSED_PARAMETER")
 @Composable
 private fun ErrorMessage(state: State.Error) {
     Box(
@@ -78,13 +75,14 @@ private fun ErrorMessage(state: State.Error) {
     }
 }
 
+@Suppress("UNUSED_PARAMETER")
 @Composable
 private fun ProgressIndicator(state: State.Loading) {
     Box(
         Modifier
             .fillMaxWidth()
             .padding(8.dp),
-        contentAlignment = Alignment.Center,
+        contentAlignment = Alignment.Center
     ) {
         CircularProgressIndicator()
     }
@@ -93,7 +91,7 @@ private fun ProgressIndicator(state: State.Loading) {
 @Preview
 @Composable
 private fun Articles(
-    @PreviewParameter(ArticlesPreviewProvider::class, limit = 1) articles: List<ArticleUI>,
+    @PreviewParameter(ArticlesPreviewProvider::class, limit = 1) articles: List<ArticleUI>
 ) {
     LazyColumn {
         items(articles) { article ->
@@ -107,7 +105,7 @@ private fun Articles(
 @Preview
 @Composable
 internal fun Article(
-    @PreviewParameter(ArticlePreviewProvider::class, limit = 1) article: ArticleUI,
+    @PreviewParameter(ArticlePreviewProvider::class, limit = 1) article: ArticleUI
 ) {
     Row(Modifier.padding(bottom = 4.dp)) {
         article.imageUrl?.let { imageUrl ->
@@ -143,39 +141,40 @@ internal fun Article(
     }
 }
 
+@Suppress("MagicNumber")
 private class ArticlePreviewProvider : PreviewParameterProvider<ArticleUI> {
-
-    override val values = sequenceOf(
-        ArticleUI(
-            1,
-            "Android Studio Iguana is Stable!",
-            "New stable version on Android IDE has been release",
-            imageUrl = null,
-            url = "",
-        ),
-        ArticleUI(
-            2,
-            "Gemini 1.5 Release",
-            "Upgraded version of Google AI is available",
-            imageUrl = null,
-            url = "",
-        ),
-        ArticleUI(
-            3,
-            "Shape animations (10 min)",
-            "How to use shape transform animations in Compose",
-            imageUrl = null,
-            url = "",
-        ),
-    )
+    override val values =
+        sequenceOf(
+            ArticleUI(
+                1,
+                "Android Studio Iguana is Stable!",
+                "New stable version on Android IDE has been release",
+                imageUrl = null,
+                url = ""
+            ),
+            ArticleUI(
+                2,
+                "Gemini 1.5 Release",
+                "Upgraded version of Google AI is available",
+                imageUrl = null,
+                url = ""
+            ),
+            ArticleUI(
+                3,
+                "Shape animations (10 min)",
+                "How to use shape transform animations in Compose",
+                imageUrl = null,
+                url = ""
+            )
+        )
 }
 
 private class ArticlesPreviewProvider : PreviewParameterProvider<List<ArticleUI>> {
-
     private val articleProvider = ArticlePreviewProvider()
 
-    override val values = sequenceOf(
-        articleProvider.values
-            .toList()
-    )
+    override val values =
+        sequenceOf(
+            articleProvider.values
+                .toList()
+        )
 }

@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ArticleDao {
-
     @Query("SELECT * FROM articles")
     suspend fun getAll(): List<ArticleDBO>
 
