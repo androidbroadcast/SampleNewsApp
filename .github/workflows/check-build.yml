@@ -12,7 +12,7 @@ jobs:
               uses: actions/setup-java@v4
               with:
                 distribution: 'temurin'
-                java-version: 11
+                java-version: 1.8
 
             - uses: gradle/gradle-build-action@v3
               with:
@@ -21,3 +21,7 @@ jobs:
             - name: Detekt
               shell: bash
               run: ./gradlew detekt
+
+              uses: jwgmeligmeyling/checkstyle-github-action@master
+              with:
+                  path: '**/detekt.xml'
