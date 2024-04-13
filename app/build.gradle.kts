@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.dagger.hilt.android)
     alias(libs.plugins.kapt)
+    alias(libs.plugins.baselineprofile)
 }
 
 android {
@@ -23,14 +24,35 @@ android {
 
         buildConfigField("String", "NEWS_API_KEY", "\"155ae65d7264461397c901103488c01e\"")
         buildConfigField("String", "NEWS_API_BASE_URL", "\"https://newsapi.org/v2/\"")
+
+        resourceConfigurations += setOf("ru", "en")
+        ndk {
+            //noinspection ChromeOsAbiSupport
+            abiFilters += setOf("armeabi-v7a", "arm64-v8a")
+        }
+
+        bundle {
+
+        }
+    }
+
+    signingConfigs {
+        create("release") {
+            storeFile = File(rootDir, "newsapp.keystore")
+            keyPassword = "12345678"
+            keyAlias = "k.rozov"
+            storePassword = "12345678"
+        }
     }
 
     buildTypes {
         release {
+            signingConfig = signingConfigs["release"]
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
+                "retrofit2.pro",
             )
         }
     }
@@ -45,12 +67,22 @@ android {
         buildConfig = true
         compose = true
     }
+
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.androidx.compose.kotlin.compiler.ext.get()
     }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "/okhttp3/internal/publicsuffix/NOTICE"
+            excludes += "/kotlin/**"
+            excludes += "META-INF/androidx.*.version"
+            excludes += "META-INF/com.google.*.version"
+            excludes += "META-INF/kotlinx_*.version"
+            excludes += "kotlin-tooling-metadata.json"
+            excludes += "DebugProbesKt.bin"
+            excludes += "META-INF/com/android/build/gradle/*"
         }
     }
 }
@@ -62,6 +94,8 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
 
     implementation(libs.dagger.hilt.android)
+    implementation(libs.androidx.profileinstaller)
+    "baselineProfile"(project(":baselineprofile"))
     kapt(libs.dagger.hilt.compiler)
 
     implementation(project(":news-data"))
@@ -72,4 +106,6 @@ dependencies {
     implementation(project(":news-uikit"))
 
     debugImplementation(libs.okhttp.logging.interceptor)
+
+    baselineProfile(project(":baselineprofile"))
 }

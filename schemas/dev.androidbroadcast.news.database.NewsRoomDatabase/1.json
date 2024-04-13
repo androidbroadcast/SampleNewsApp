@@ -1,88 +1,88 @@
 {
-    "formatVersion": 1,
-    "database": {
-        "version": 1,
-        "identityHash": "a9932ee60049f61cd7efacd696e6a6c3",
-        "entities": [
-            {
-                "tableName": "articles",
-                "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`author` TEXT NOT NULL, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `url` TEXT NOT NULL, `urlToImage` TEXT, `publishedAt` TEXT NOT NULL, `content` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `sourceid` TEXT NOT NULL, `sourcename` TEXT NOT NULL)",
-                "fields": [
-                    {
-                        "fieldPath": "author",
-                        "columnName": "author",
-                        "affinity": "TEXT",
-                        "notNull": true
-                    },
-                    {
-                        "fieldPath": "title",
-                        "columnName": "title",
-                        "affinity": "TEXT",
-                        "notNull": true
-                    },
-                    {
-                        "fieldPath": "description",
-                        "columnName": "description",
-                        "affinity": "TEXT",
-                        "notNull": true
-                    },
-                    {
-                        "fieldPath": "url",
-                        "columnName": "url",
-                        "affinity": "TEXT",
-                        "notNull": true
-                    },
-                    {
-                        "fieldPath": "urlToImage",
-                        "columnName": "urlToImage",
-                        "affinity": "TEXT",
-                        "notNull": false
-                    },
-                    {
-                        "fieldPath": "publishedAt",
-                        "columnName": "publishedAt",
-                        "affinity": "TEXT",
-                        "notNull": true
-                    },
-                    {
-                        "fieldPath": "content",
-                        "columnName": "content",
-                        "affinity": "TEXT",
-                        "notNull": true
-                    },
-                    {
-                        "fieldPath": "id",
-                        "columnName": "id",
-                        "affinity": "INTEGER",
-                        "notNull": true
-                    },
-                    {
-                        "fieldPath": "source.id",
-                        "columnName": "sourceid",
-                        "affinity": "TEXT",
-                        "notNull": true
-                    },
-                    {
-                        "fieldPath": "source.name",
-                        "columnName": "sourcename",
-                        "affinity": "TEXT",
-                        "notNull": true
-                    }
-                ],
-                "primaryKey": {
-                    "autoGenerate": true,
-                    "columnNames": [
-                        "id"
-                    ]
-                },
-                "indices": [],
-                "foreignKeys": []
-            }
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "713c887a36501d1941c3ed0942f44c8b",
+    "entities": [
+      {
+        "tableName": "articles",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`author` TEXT, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `url` TEXT NOT NULL, `urlToImage` TEXT, `publishedAt` TEXT NOT NULL, `content` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `sourceid` TEXT NOT NULL, `sourcename` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "author",
+            "columnName": "author",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "url",
+            "columnName": "url",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "urlToImage",
+            "columnName": "urlToImage",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "publishedAt",
+            "columnName": "publishedAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "content",
+            "columnName": "content",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "source.id",
+            "columnName": "sourceid",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "source.name",
+            "columnName": "sourcename",
+            "affinity": "TEXT",
+            "notNull": true
+          }
         ],
-        "views": [],
-        "setupQueries": [
-            "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-            "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a9932ee60049f61cd7efacd696e6a6c3')"
-        ]
-    }
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '713c887a36501d1941c3ed0942f44c8b')"
+    ]
+  }
 }

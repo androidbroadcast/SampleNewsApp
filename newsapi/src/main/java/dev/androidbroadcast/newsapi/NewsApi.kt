@@ -3,6 +3,7 @@
 package dev.androidbroadcast.newsapi
 
 import androidx.annotation.IntRange
+import androidx.annotation.Keep
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.skydoves.retrofit.adapters.result.ResultCallAdapterFactory
 import dev.androidbroadcast.newsapi.models.ArticleDTO
