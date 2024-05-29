@@ -32,6 +32,10 @@ allprojects.onEach { project ->
 
                 project.dependencies.add("detektPlugins", libs.detekt.formatting.get().toString())
             }
+
+            if (hasPlugin(libs.plugins.compose.compiler.get().pluginId)) {
+                project.dependencies.add("detektPlugins", libs.detekt.rules.compose.get().toString())
+            }
         }
     }
 }
