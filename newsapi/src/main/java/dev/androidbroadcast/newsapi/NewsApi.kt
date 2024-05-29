@@ -3,7 +3,6 @@
 package dev.androidbroadcast.newsapi
 
 import androidx.annotation.IntRange
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.skydoves.retrofit.adapters.result.ResultCallAdapterFactory
 import dev.androidbroadcast.newsapi.models.ArticleDTO
 import dev.androidbroadcast.newsapi.models.Language
@@ -14,6 +13,7 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import retrofit2.create
 import retrofit2.http.GET
 import retrofit2.http.Query

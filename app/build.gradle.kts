@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.dagger.hilt.android)
     alias(libs.plugins.kapt)
     alias(libs.plugins.baselineprofile)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -29,9 +30,6 @@ android {
         ndk {
             //noinspection ChromeOsAbiSupport
             abiFilters += setOf("armeabi-v7a", "arm64-v8a")
-        }
-
-        bundle {
         }
     }
 
@@ -63,10 +61,6 @@ android {
     buildFeatures {
         buildConfig = true
         compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.androidx.compose.kotlin.compiler.ext.get()
     }
 
     packaging {
