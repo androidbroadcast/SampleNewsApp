@@ -38,3 +38,5 @@ include(":features:news-main:domain")
 include(":news-common")
 include(":news-uikit")
 include(":baselineprofile")
+
+include(":convention")
