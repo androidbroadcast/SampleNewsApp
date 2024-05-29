@@ -20,6 +20,3 @@ public class NewsMainViewModel @Inject internal constructor(
             .map { it.toState() }
             .stateIn(viewModelScope, SharingStarted.Lazily, State.None)
 }
-
-
-
