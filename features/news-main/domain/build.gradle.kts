@@ -3,6 +3,8 @@ import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.dagger.hilt.android)
+    alias(libs.plugins.kapt)
 }
 
 kotlin {
@@ -10,13 +12,11 @@ kotlin {
 }
 
 android {
-    namespace = "dev.androidbroadcast.news.data"
-    compileSdk = 34
+    namespace = "dev.androidbroadcast.news.main"
+    compileSdk = libs.versions.androidSdk.compile.get().toInt()
 
     defaultConfig {
-        minSdk = 24
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        minSdk = libs.versions.androidSdk.min.get().toInt()
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -40,11 +40,16 @@ android {
 
 dependencies {
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+
     implementation(libs.kotlinx.coroutines.android)
 
-    implementation(project(":database"))
-    implementation(project(":newsapi"))
-    implementation(project(":news-common"))
+    compileOnly(libs.androidx.compose.runtime)
+    api(libs.kotlinx.immutable)
 
-    implementation(libs.javax.inject)
+    api(project(":news-data"))
+
+    implementation(libs.dagger.hilt.android)
+    kapt(libs.dagger.hilt.compiler)
 }

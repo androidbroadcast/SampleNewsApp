@@ -7,10 +7,10 @@ plugins {
 
 android {
     namespace = "dev.androidbroadcast.news.main"
-    compileSdk = 34
+    compileSdk = libs.versions.androidSdk.compile.get().toInt()
 
     defaultConfig {
-        minSdk = 24
+        minSdk = libs.versions.androidSdk.min.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -46,24 +46,18 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.compose.runtime)
-    implementation(libs.androidx.compose.ui)
-    implementation(libs.androidx.compose.ui.graphics)
-    implementation(libs.androidx.compose.ui.tooling.preview)
-    implementation(libs.androidx.material3)
-    debugImplementation(libs.androidx.compose.ui.tooling)
-    debugImplementation(libs.androidx.compose.ui.test.manifest)
 
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
 
-    implementation(libs.koltinx.coroutines.android)
+    implementation(libs.kotlinx.coroutines.android)
 
-    implementation(project(":news-data"))
-    implementation(project(":news-uikit"))
+    implementation(projects.features.newsMain.domain)
+    implementation(projects.newsUikit)
 
     implementation(libs.dagger.hilt.android)
     kapt(libs.dagger.hilt.compiler)
 
     implementation(libs.coil.compose)
+    implementation(projects.newsCommon)
 }

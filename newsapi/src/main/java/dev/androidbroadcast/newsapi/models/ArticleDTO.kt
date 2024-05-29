@@ -1,6 +1,5 @@
 package dev.androidbroadcast.newsapi.models
 
-import androidx.annotation.Keep
 import dev.androidbroadcast.newsapi.utils.DateTimeUTCSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

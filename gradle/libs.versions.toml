@@ -12,7 +12,7 @@ activityCompose = "1.8.2"
 composeBom = "2024.02.01"
 androidx-compose-runtime = "1.6.2"
 androidx-compose-kotlin-compiler-ext = "1.5.10"
-retrofit = "2.9.0"
+retrofit = "2.11.0"
 kotlinx-coroutines = "1.8.0"
 retrofitAdaptersResult = "1.0.9"
 retrofitConverterKotlinxSerialization = "1.0.0"
@@ -29,6 +29,10 @@ uiautomator = "2.2.0"
 benchmarkMacroJunit4 = "1.2.3"
 baselineprofile = "1.2.3"
 profileinstaller = "1.3.1"
+androidSdk-target = "33"
+androidSdk-min = "24"
+androidSdk-compile = "34"
+kotlinx-immutable = "0.3.7"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -59,13 +63,16 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit-adapters-result = { module = "com.github.skydoves:retrofit-adapters-result", version.ref = "retrofitAdaptersResult" }
 retrofit-converter-kotlinx-serialization = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofitConverterKotlinxSerialization" }
+retrofit-responseTypeKeeper = { module = "com.squareup.retrofit2:response-type-keeper", version.ref = "retrofit" }
 
-koltinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
-koltinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
 
-koltinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serialization-json" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serialization-json" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+
+kotlinx-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinx-immutable"}
 
 dagger-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "dagger" }
 dagger-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "dagger" }

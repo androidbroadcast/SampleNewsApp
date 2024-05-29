@@ -1,3 +1,5 @@
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 pluginManagement {
     repositories {
         google {
@@ -14,7 +16,13 @@ pluginManagement {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        google()
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
         mavenCentral()
     }
 }
@@ -25,7 +33,8 @@ include(":newsapi")
 include(":database")
 include(":news-data")
 
-include(":features:news-main")
+include(":features:news-main:ui")
+include(":features:news-main:domain")
 include(":news-common")
 include(":news-uikit")
 include(":baselineprofile")

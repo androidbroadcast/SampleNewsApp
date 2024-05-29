@@ -8,12 +8,12 @@ plugins {
 
 android {
     namespace = "dev.androidbroadcast.newssearchapp"
-    compileSdk = 34
+    compileSdk = libs.versions.androidSdk.compile.get().toInt()
 
     defaultConfig {
         applicationId = "dev.androidbroadcast.newssearchapp"
-        minSdk = 24
-        targetSdk = 34
+        minSdk = libs.versions.androidSdk.min.get().toInt()
+        targetSdk = libs.versions.androidSdk.target.get().toInt()
         versionCode = 1
         versionName = "1.0"
 
@@ -32,13 +32,13 @@ android {
         }
 
         bundle {
-
         }
     }
 
     signingConfigs {
         create("release") {
             storeFile = File(rootDir, "newsapp.keystore")
+            // Password must be store somewhere in private storage
             keyPassword = "12345678"
             keyAlias = "k.rozov"
             storePassword = "12345678"
@@ -49,11 +49,8 @@ android {
         release {
             signingConfig = signingConfigs["release"]
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro",
-                "retrofit2.pro",
-            )
+            proguardFile(getDefaultProguardFile("proguard-android-optimize.txt"),)
+            proguardFile(file("proguard/"))
         }
     }
     compileOptions {
@@ -95,17 +92,16 @@ dependencies {
 
     implementation(libs.dagger.hilt.android)
     implementation(libs.androidx.profileinstaller)
-    "baselineProfile"(project(":baselineprofile"))
     kapt(libs.dagger.hilt.compiler)
 
-    implementation(project(":news-data"))
-    implementation(project(":newsapi"))
-    implementation(project(":features:news-main"))
-    implementation(project(":database"))
-    implementation(project(":news-common"))
-    implementation(project(":news-uikit"))
+    implementation(projects.newsData)
+    implementation(projects.newsapi)
+    implementation(projects.features.newsMain.ui)
+    implementation(projects.database)
+    implementation(projects.newsCommon)
+    implementation(projects.newsUikit)
 
     debugImplementation(libs.okhttp.logging.interceptor)
 
-    baselineProfile(project(":baselineprofile"))
+    baselineProfile(projects.baselineprofile)
 }

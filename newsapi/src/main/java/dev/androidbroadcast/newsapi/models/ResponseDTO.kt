@@ -1,6 +1,5 @@
 package dev.androidbroadcast.newsapi.models
 
-import androidx.annotation.Keep
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

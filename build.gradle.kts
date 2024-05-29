@@ -16,6 +16,7 @@ plugins {
     alias(libs.plugins.baselineprofile) apply false
 }
 
+// TODO Replace Detekt Gradle with terminal launch
 allprojects.onEach { project ->
     project.afterEvaluate {
         with(project.plugins) {

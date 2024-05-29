@@ -2,19 +2,19 @@ package dev.androidbroadcast.common
 
 import android.util.Log
 
-interface Logger {
-    fun d(
+public interface Logger {
+    public fun d(
         tag: String,
         message: String
     )
 
-    fun e(
+    public fun e(
         tag: String,
         message: String
     )
 }
 
-fun AndroidLogcatLogger(): Logger =
+public fun AndroidLogcatLogger(): Logger =
     object : Logger {
         override fun d(
             tag: String,
