@@ -1,16 +1,19 @@
 package dev.androidbroadcast.news.main
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -21,37 +24,56 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.max
+import androidx.paging.LoadState
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
 import coil.compose.AsyncImagePainter
 import dev.androidbroadcast.news.NewsTheme
 
 @Composable
 internal fun ArticleList(
-    articleState: State.Success
+    items: LazyPagingItems<ArticleUI>
 ) {
-    ArticleList(articles = articleState.articles)
-}
-
-@Preview
-@Composable
-internal fun ArticleList(
-    @PreviewParameter(ArticlesPreviewProvider::class, limit = 1) articles: List<ArticleUI>
-) {
-    LazyColumn {
-        items(articles) { article ->
-            key(article.id) {
-                Article(article)
+    val lazyListState = rememberLazyListState()
+    Box(Modifier.fillMaxSize()) {
+        LazyColumn(state = lazyListState) {
+            if (items.loadState.prepend is LoadState.Loading) {
+                item { ProgressIndicator() }
             }
+
+            items(
+                count = items.itemCount,
+                key = items.itemKey { it.id }
+            ) {
+                val item = items[it]
+                if (item != null) Article(item)
+            }
+
+            if (items.loadState.append is LoadState.Loading) {
+                item { ProgressIndicator() }
+            }
+        }
+
+        if (items.loadState.append is LoadState.Error) {
+            ErrorMessage()
         }
     }
 }
 
-@Preview
+
 @Composable
 internal fun Article(
-    @PreviewParameter(ArticlePreviewProvider::class, limit = 1) article: ArticleUI
+    article: ArticleUI,
+    modifier: Modifier = Modifier,
 ) {
-    Row(Modifier.padding(bottom = 4.dp)) {
+    Row(
+        Modifier
+            .padding(bottom = 4.dp)
+            .height(150.dp)
+            .then(modifier)
+    ) {
         article.imageUrl?.let { imageUrl ->
             var isImageVisible by remember { mutableStateOf(true) }
             if (isImageVisible) {
@@ -83,42 +105,4 @@ internal fun Article(
             )
         }
     }
-}
-
-private class ArticlesPreviewProvider : PreviewParameterProvider<List<ArticleUI>> {
-    private val articleProvider = ArticlePreviewProvider()
-
-    override val values =
-        sequenceOf(
-            articleProvider.values
-                .toList()
-        )
-}
-
-@Suppress("MagicNumber")
-private class ArticlePreviewProvider : PreviewParameterProvider<ArticleUI> {
-    override val values =
-        sequenceOf(
-            ArticleUI(
-                1,
-                "Android Studio Iguana is Stable!",
-                "New stable version on Android IDE has been release",
-                imageUrl = null,
-                url = ""
-            ),
-            ArticleUI(
-                2,
-                "Gemini 1.5 Release",
-                "Upgraded version of Google AI is available",
-                imageUrl = null,
-                url = ""
-            ),
-            ArticleUI(
-                3,
-                "Shape animations (10 min)",
-                "How to use shape transform animations in Compose",
-                imageUrl = null,
-                url = ""
-            )
-        )
 }

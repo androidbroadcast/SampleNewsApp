@@ -64,4 +64,5 @@ dependencies {
 
     implementation(libs.coil.compose)
     implementation(projects.newsCommon)
+    implementation(libs.androidx.paging.compose)
 }

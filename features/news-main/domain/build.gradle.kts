@@ -48,8 +48,10 @@ dependencies {
     compileOnly(libs.androidx.compose.runtime)
     api(libs.kotlinx.immutable)
 
-    api(project(":news-data"))
+    api(projects.newsData)
+    api(projects.database)
 
     implementation(libs.dagger.hilt.android)
     kapt(libs.dagger.hilt.compiler)
+    implementation(libs.androidx.paging.common)
 }

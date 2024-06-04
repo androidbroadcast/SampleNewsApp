@@ -10,13 +10,14 @@ import dev.androidbroadcast.common.AndroidLogcatLogger
 import dev.androidbroadcast.common.AppDispatchers
 import dev.androidbroadcast.common.Logger
 import dev.androidbroadcast.news.database.NewsDatabase
+import dev.androidbroadcast.news.database.dao.ArticleDao
 import dev.androidbroadcast.newsapi.NewsApi
 import okhttp3.OkHttpClient
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object AppModule {
+internal object AppModule {
     @Provides
     @Singleton
     fun provideNewsApi(okHttpClient: OkHttpClient?): NewsApi {
@@ -29,6 +30,18 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun provideAppCoroutineDispatchers(): AppDispatchers = AppDispatchers()
+
+    @Provides
+    fun provideLogger(): Logger = AndroidLogcatLogger()
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+internal object DatabaseDao {
+
+    @Provides
+    @Singleton
     fun provideNewsDatabase(
         @ApplicationContext context: Context
     ): NewsDatabase {
@@ -36,9 +49,9 @@ object AppModule {
     }
 
     @Provides
-    @Singleton
-    fun provideAppCoroutineDispatchers(): AppDispatchers = AppDispatchers()
-
-    @Provides
-    fun provideLogger(): Logger = AndroidLogcatLogger()
+    fun provideArticleDao(
+        database: NewsDatabase
+    ): ArticleDao {
+        return database.articlesDao
+    }
 }
