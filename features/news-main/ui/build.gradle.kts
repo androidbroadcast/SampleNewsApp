@@ -17,22 +17,15 @@ android {
         consumerProguardFiles("consumer-rules.pro")
     }
 
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
     buildFeatures {
         compose = true
     }
@@ -56,12 +49,12 @@ dependencies {
 
     implementation(libs.kotlinx.coroutines.android)
 
-    implementation(projects.features.newsMain.domain)
-    implementation(projects.newsUikit)
+    implementation(projects.features.newsMain.uiLogic)
+    implementation(projects.core.uikit)
 
     implementation(libs.dagger.hilt.android)
     kapt(libs.dagger.hilt.compiler)
 
     implementation(libs.coil.compose)
-    implementation(projects.newsCommon)
+    implementation(projects.core.common)
 }

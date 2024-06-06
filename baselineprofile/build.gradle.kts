@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "dev.androidbroadcast.newsapp.baselineprofile"
-    compileSdk = 34
+    compileSdk = libs.versions.androidSdk.compile.get().toInt()
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -19,7 +19,7 @@ android {
 
     defaultConfig {
         minSdk = 28
-        targetSdk = 34
+        targetSdk = libs.versions.androidSdk.target.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

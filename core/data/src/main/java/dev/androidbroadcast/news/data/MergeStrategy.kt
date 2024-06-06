@@ -7,6 +7,7 @@ import dev.androidbroadcast.news.data.RequestResult.InProgress
 import dev.androidbroadcast.news.data.RequestResult.Success
 
 public interface MergeStrategy<E> {
+
     public fun merge(
         right: E,
         left: E

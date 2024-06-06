@@ -88,12 +88,12 @@ dependencies {
     implementation(libs.androidx.profileinstaller)
     kapt(libs.dagger.hilt.compiler)
 
-    implementation(projects.newsData)
-    implementation(projects.newsapi)
+    implementation(projects.core.data)
+    implementation(projects.core.opennewsApi)
     implementation(projects.features.newsMain.ui)
-    implementation(projects.database)
-    implementation(projects.newsCommon)
-    implementation(projects.newsUikit)
+    implementation(projects.core.database)
+    implementation(projects.core.common)
+    implementation(projects.core.uikit)
 
     debugImplementation(libs.okhttp.logging.interceptor)
 

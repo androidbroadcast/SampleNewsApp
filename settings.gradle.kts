@@ -29,12 +29,14 @@ dependencyResolutionManagement {
 
 rootProject.name = "NewsSearchApp"
 include(":app")
-include(":newsapi")
-include(":database")
-include(":news-data")
+
+include(":core:opennews-api")
+include(":core:database")
+include(":core:data")
+include(":core:common")
+include(":core:uikit")
 
 include(":features:news-main:ui")
-include(":features:news-main:domain")
-include(":news-common")
-include(":news-uikit")
+include(":features:news-main:ui-logic")
+
 include(":baselineprofile")

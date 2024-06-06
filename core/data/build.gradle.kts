@@ -42,9 +42,9 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.kotlinx.coroutines.android)
 
-    implementation(project(":database"))
-    implementation(project(":newsapi"))
-    implementation(project(":news-common"))
+    implementation(projects.core.database)
+    implementation(projects.core.opennewsApi)
+    implementation(projects.core.common)
 
     implementation(libs.javax.inject)
 }
