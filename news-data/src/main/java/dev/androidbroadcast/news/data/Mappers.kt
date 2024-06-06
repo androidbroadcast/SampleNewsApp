@@ -33,8 +33,9 @@ internal fun SourceDTO.toSourceDbo(): SourceDBO {
     return SourceDBO(id = id ?: name, name = name)
 }
 
-internal fun ArticleDTO.toArticle(): Article {
+internal fun ArticleDTO.toArticle(id: Int = 0): Article {
     return Article(
+        cacheId = id,
         source = source.toSource(),
         author = author,
         title = title,

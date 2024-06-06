@@ -47,4 +47,5 @@ dependencies {
     implementation(project(":news-common"))
 
     implementation(libs.javax.inject)
+    implementation(libs.androidx.paging.common)
 }

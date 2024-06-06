@@ -42,4 +42,7 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
+    // Делаю API зависимость чтобы другие модули могли работать с получаемымы результатом из DAO
+    api(libs.androidx.room.paging)
+    implementation(libs.androidx.paging.common)
 }

@@ -34,9 +34,13 @@ interface NewsApi {
         @Query("to") to: Date? = null,
         @Query("languages") languages: List<@JvmSuppressWildcards Language>? = null,
         @Query("sortBy") sortBy: SortBy? = null,
-        @Query("pageSize") @IntRange(from = 0, to = 100) pageSize: Int = 100,
+        @Query("pageSize") @IntRange(from = 0, to = 100) pageSize: Int = MAX_PAGE_SIZE,
         @Query("page") @IntRange(from = 1) page: Int = 1
     ): Result<ResponseDTO<ArticleDTO>>
+
+    companion object {
+        const val MAX_PAGE_SIZE = 100
+    }
 }
 
 fun NewsApi(
