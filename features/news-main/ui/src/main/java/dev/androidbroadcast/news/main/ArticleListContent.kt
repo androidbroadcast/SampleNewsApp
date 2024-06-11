@@ -27,17 +27,19 @@ import dev.androidbroadcast.news.NewsTheme
 
 @Composable
 internal fun ArticleList(
-    articleState: State.Success
+    articleState: State.Success,
+    modifier: Modifier = Modifier,
 ) {
-    ArticleList(articles = articleState.articles)
+    ArticleList(articles = articleState.articles, modifier)
 }
 
 @Preview
 @Composable
 internal fun ArticleList(
-    @PreviewParameter(ArticlesPreviewProvider::class, limit = 1) articles: List<ArticleUI>
+    @PreviewParameter(ArticlesPreviewProvider::class, limit = 1) articles: List<ArticleUI>,
+    modifier: Modifier = Modifier,
 ) {
-    LazyColumn {
+    LazyColumn(modifier) {
         items(articles) { article ->
             key(article.id) {
                 Article(article)
@@ -49,9 +51,10 @@ internal fun ArticleList(
 @Preview
 @Composable
 internal fun Article(
-    @PreviewParameter(ArticlePreviewProvider::class, limit = 1) article: ArticleUI
+    @PreviewParameter(ArticlePreviewProvider::class, limit = 1) article: ArticleUI,
+    modifier: Modifier = Modifier,
 ) {
-    Row(Modifier.padding(bottom = 4.dp)) {
+    Row(modifier.padding(bottom = 4.dp)) {
         article.imageUrl?.let { imageUrl ->
             var isImageVisible by remember { mutableStateOf(true) }
             if (isImageVisible) {

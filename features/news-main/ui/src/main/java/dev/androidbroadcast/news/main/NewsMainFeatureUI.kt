@@ -47,10 +47,13 @@ private fun NewsMainContent(
 }
 
 @Composable
-private fun ErrorMessage(state: State.Error) {
+private fun ErrorMessage(
+    state: State.Error,
+    modifier: Modifier = Modifier,
+) {
     Column {
         Box(
-            Modifier
+            modifier
                 .fillMaxWidth()
                 .background(NewsTheme.colorScheme.error)
                 .padding(8.dp),
@@ -61,16 +64,19 @@ private fun ErrorMessage(state: State.Error) {
 
         val articles = state.articles
         if (articles != null) {
-            ArticleList(articles = articles)
+            ArticleList(articles = articles, modifier = modifier)
         }
     }
 }
 
 @Composable
-private fun ProgressIndicator(state: State.Loading) {
+private fun ProgressIndicator(
+    state: State.Loading,
+    modifier: Modifier = Modifier,
+) {
     Column {
         Box(
-            Modifier
+            modifier
                 .fillMaxWidth()
                 .padding(8.dp),
             contentAlignment = Alignment.Center
@@ -80,7 +86,7 @@ private fun ProgressIndicator(state: State.Loading) {
 
         val articles = state.articles
         if (articles != null) {
-            ArticleList(articles = articles)
+            ArticleList(articles = articles, modifier = modifier)
         }
     }
 }
