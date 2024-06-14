@@ -1,39 +1,49 @@
+@file:OptIn(ExperimentalKotlinGradlePluginApi::class)
+
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.kotlinMultiplatform)
 }
 
 kotlin {
     explicitApi = ExplicitApiMode.Strict
+
+    androidTarget {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_1_8)
+        }
+    }
+
+    sourceSets  {
+        commonMain.dependencies {
+            implementation(libs.kotlinx.coroutines.core)
+            implementation(projects.core.common)
+            implementation(projects.core.database)
+            implementation(projects.core.opennewsApi)
+        }
+
+        androidMain.dependencies {
+            implementation(libs.kotlinx.coroutines.android)
+            implementation(libs.androidx.core.ktx)
+            implementation(libs.javax.inject)
+        }
+    }
 }
 
 android {
     namespace = "dev.androidbroadcast.news.data"
-    compileSdk = 34
+    compileSdk = libs.versions.androidSdk.min.get().toInt()
 
     defaultConfig {
-        minSdk = 24
+        compileSdk = libs.versions.androidSdk.compile.get().toInt()
     }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}
-
-dependencies {
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.kotlinx.coroutines.android)
-
-    implementation(projects.core.database)
-    implementation(projects.core.opennewsApi)
-    implementation(projects.core.common)
-
-    implementation(libs.javax.inject)
 }

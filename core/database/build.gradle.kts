@@ -1,16 +1,39 @@
+@file:OptIn(ExperimentalKotlinGradlePluginApi::class)
+
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.ksp)
     alias(libs.plugins.androidx.room)
 }
 
+kotlin {
+    androidTarget {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_1_8)
+        }
+    }
+
+    sourceSets  {
+        commonMain.dependencies {
+        }
+
+        androidMain.dependencies {
+            implementation(libs.androidx.core.ktx)
+            implementation(libs.androidx.room.ktx)
+        }
+    }
+}
+
 android {
     namespace = "dev.androidbroadcast.news.database"
-    compileSdk = 34
+    compileSdk = libs.versions.androidSdk.min.get().toInt()
 
     defaultConfig {
-        minSdk = 24
+        compileSdk = libs.versions.androidSdk.compile.get().toInt()
     }
 
     buildTypes {
@@ -22,9 +45,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
 }
 
 room {
@@ -32,7 +52,5 @@ room {
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)
     ksp(libs.androidx.room.compiler)
-    implementation(libs.androidx.room.ktx)
 }

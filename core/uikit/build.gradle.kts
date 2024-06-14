@@ -1,35 +1,53 @@
+@file:OptIn(ExperimentalKotlinGradlePluginApi::class)
+
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.detekt)
+}
+
+kotlin {
+    androidTarget {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_1_8)
+        }
+    }
+
+    sourceSets  {
+        commonMain.dependencies {
+            api(compose.ui)
+            api(compose.runtime)
+            api(compose.foundation)
+            api(compose.material3)
+            implementation(compose.components.uiToolingPreview)
+        }
+
+        androidMain.dependencies {
+            implementation(libs.androidx.core.ktx)
+            // Need only for debug
+            implementation(libs.androidx.compose.ui.tooling)
+            // Need only for debug
+            implementation(libs.androidx.compose.ui.test.manifest)
+            implementation(project.dependencies.platform(libs.androidx.compose.bom))
+        }
+    }
 }
 
 android {
     namespace = "dev.androidbroadcast.news.uikit"
-    compileSdk = 34
+    compileSdk = libs.versions.androidSdk.min.get().toInt()
 
     defaultConfig {
-        minSdk = 24
+        compileSdk = libs.versions.androidSdk.compile.get().toInt()
     }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}
-
-dependencies {
-    implementation(libs.androidx.core.ktx)
-    implementation(platform(libs.androidx.compose.bom))
-    api(libs.androidx.compose.ui)
-    api(libs.androidx.compose.ui.graphics)
-    api(libs.androidx.compose.ui.tooling.preview)
-    api(libs.androidx.compose.runtime)
-    api(libs.androidx.material3)
-    debugApi(libs.androidx.compose.ui.tooling)
-    debugApi(libs.androidx.compose.ui.test.manifest)
 }

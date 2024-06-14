@@ -1,21 +1,44 @@
 plugins {
-    alias(libs.plugins.jetbrainsKotlinJvm)
     alias(libs.plugins.kotlinSerialization)
-    alias(libs.plugins.kapt)
+    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.androidLibrary)
+    // KAPT не поддерживает KMP
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+kotlin {
+    androidTarget()
+
+    sourceSets {
+        commonMain.dependencies {
+            implementation(libs.kotlinx.coroutines.core)
+            api(libs.kotlinx.serialization.json)
+        }
+
+        androidMain.dependencies {
+            implementation(libs.retrofit)
+            implementation(libs.androidx.annotation)
+            implementation(libs.retrofit.converter.kotlinx.serialization)
+            implementation(libs.retrofit.adapters.result)
+            api(libs.okhttp)
+        }
+    }
 }
 
-dependencies {
-    implementation(libs.retrofit)
-    implementation(libs.kotlinx.coroutines.core)
-    api(libs.kotlinx.serialization.json)
-    implementation(libs.androidx.annotation)
-    implementation(libs.retrofit.converter.kotlinx.serialization)
-    implementation(libs.retrofit.adapters.result)
-    api(libs.okhttp)
-    kapt(libs.retrofit.responseTypeKeeper)
+android {
+    namespace = "dev.androidbroadcast.news.database"
+    compileSdk = libs.versions.androidSdk.min.get().toInt()
+
+    defaultConfig {
+        compileSdk = libs.versions.androidSdk.compile.get().toInt()
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
 }
