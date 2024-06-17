@@ -22,7 +22,11 @@ jobs:
               shell: bash
               run: ./gradlew detekt
 
-            - name: Publish detekt reports
-              uses: jwgmeligmeyling/checkstyle-github-action@master
+            - name: Publish Checkstyle Report
+              # You may pin to the exact commit or the version.
+              # uses: Juuxel/publish-checkstyle-report@eec483cc03443d79f49d62ccb30da6c210e322f0
+              uses: Juuxel/publish-checkstyle-report@v1.0.0
               with:
-                  path: '**/detekt.xml'
+                # The glob paths to all report XML files
+                reports:
+                    '**/build/**/detekt.xml'
