@@ -11,7 +11,7 @@ import dev.androidbroadcast.common.AppDispatchers
 import dev.androidbroadcast.common.Logger
 import dev.androidbroadcast.news.database.NewsDatabase
 import dev.androidbroadcast.newsapi.NewsApi
-import okhttp3.OkHttpClient
+import kotlinx.serialization.json.Json
 import javax.inject.Singleton
 
 @Module
@@ -19,21 +19,27 @@ import javax.inject.Singleton
 object AppModule {
     @Provides
     @Singleton
-    fun provideNewsApi(okHttpClient: OkHttpClient?): NewsApi {
-        return NewsApi(
+    fun provideNewsApi(json: Json): NewsApi =
+        NewsApi(
             baseUrl = BuildConfig.NEWS_API_BASE_URL,
             apiKey = BuildConfig.NEWS_API_KEY,
-            okHttpClient = okHttpClient
+            json = json,
         )
-    }
+
+    @Provides
+    @Singleton
+    fun provideJson(): Json =
+        Json {
+            isLenient = true
+            ignoreUnknownKeys = true
+            explicitNulls = false
+        }
 
     @Provides
     @Singleton
     fun provideNewsDatabase(
         @ApplicationContext context: Context
-    ): NewsDatabase {
-        return NewsDatabase(context)
-    }
+    ): NewsDatabase = NewsDatabase(context)
 
     @Provides
     @Singleton

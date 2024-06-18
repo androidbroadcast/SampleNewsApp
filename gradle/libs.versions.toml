@@ -11,9 +11,7 @@ androidx-lifecycle = "2.8.2"
 activityCompose = "1.9.0"
 composeBom = "2024.06.00"
 androidx-compose-runtime = "1.6.8"
-retrofit = "2.11.0"
 kotlinx-coroutines = "1.9.0-RC"
-retrofitAdaptersResult = "1.0.9"
 appcompat = "1.7.0"
 material = "1.12.0"
 room = "2.7.0-alpha04"
@@ -35,6 +33,7 @@ kotlinx-immutable = "0.3.7"
 kotlinx-datetime = "0.6.0"
 compose-rules = "0.4.3"
 compose-plugin = "1.6.11"
+ktor = "2.3.11"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -62,10 +61,6 @@ androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-te
 androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "androidx-compose-runtime" }
 
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
-retrofit-adapters-result = { module = "com.github.skydoves:retrofit-adapters-result", version.ref = "retrofitAdaptersResult" }
-retrofit-converter-kotlinx-serialization = { module = "com.squareup.retrofit2:converter-kotlinx-serialization", version.ref = "retrofit" }
-retrofit-responseTypeKeeper = { module = "com.squareup.retrofit2:response-type-keeper", version.ref = "retrofit" }
 
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
@@ -76,6 +71,11 @@ material = { group = "com.google.android.material", name = "material", version.r
 
 kotlinx-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinx-immutable"}
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime"}
+
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+ktor-client-contentNegotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 
 dagger-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "dagger" }
 dagger-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "dagger" }

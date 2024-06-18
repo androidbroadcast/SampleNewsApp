@@ -22,14 +22,16 @@ kotlin {
             implementation(libs.kotlinx.coroutines.core)
             api(libs.kotlinx.serialization.json)
             api(libs.kotlinx.datetime)
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.ktor.client.contentNegotiation)
+            implementation(libs.androidx.annotation)
         }
 
         androidMain.dependencies {
-            implementation(libs.retrofit)
-            implementation(libs.androidx.annotation)
-            implementation(libs.retrofit.converter.kotlinx.serialization)
-            implementation(libs.retrofit.adapters.result)
-            api(libs.okhttp)
+            implementation(libs.ktor.client.okhttp)
+            implementation(libs.okhttp)
+            implementation(libs.okhttp)
         }
     }
 }
