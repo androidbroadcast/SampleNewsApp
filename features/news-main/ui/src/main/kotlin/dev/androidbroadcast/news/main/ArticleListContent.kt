@@ -28,7 +28,7 @@ import dev.androidbroadcast.news.NewsTheme
 @Composable
 internal fun ArticleList(
     articleState: State.Success,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     ArticleList(articles = articleState.articles, modifier)
 }
@@ -37,7 +37,7 @@ internal fun ArticleList(
 @Composable
 internal fun ArticleList(
     @PreviewParameter(ArticlesPreviewProvider::class, limit = 1) articles: List<ArticleUI>,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     LazyColumn(modifier) {
         items(articles) { article ->
@@ -52,7 +52,7 @@ internal fun ArticleList(
 @Composable
 internal fun Article(
     @PreviewParameter(ArticlePreviewProvider::class, limit = 1) article: ArticleUI,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Row(modifier.padding(bottom = 4.dp)) {
         article.imageUrl?.let { imageUrl ->
@@ -73,17 +73,23 @@ internal fun Article(
         }
         Spacer(modifier = Modifier.size(4.dp))
         Column(modifier = Modifier.padding(8.dp)) {
-            Text(
-                text = article.title,
-                style = NewsTheme.typography.headlineMedium,
-                maxLines = 1
-            )
+            val title = article.title
+            if (title != null) {
+                Text(
+                    text = title,
+                    style = NewsTheme.typography.headlineMedium,
+                    maxLines = 1
+                )
+            }
             Spacer(modifier = Modifier.size(4.dp))
-            Text(
-                text = article.description,
-                style = NewsTheme.typography.bodyMedium,
-                maxLines = 3
-            )
+            val description = article.description
+            if (description != null) {
+                Text(
+                    text = description,
+                    style = NewsTheme.typography.bodyMedium,
+                    maxLines = 3
+                )
+            }
         }
     }
 }

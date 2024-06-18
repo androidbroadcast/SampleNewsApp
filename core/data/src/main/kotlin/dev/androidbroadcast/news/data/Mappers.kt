@@ -10,7 +10,7 @@ import dev.androidbroadcast.news.database.models.Source as SourceDBO
 internal fun ArticleDBO.toArticle(): Article {
     return Article(
         cacheId = id,
-        source = source.toSource(),
+        source = source?.toSource(),
         author = author,
         title = title,
         description = description,
@@ -35,7 +35,7 @@ internal fun SourceDTO.toSourceDbo(): SourceDBO {
 
 internal fun ArticleDTO.toArticle(): Article {
     return Article(
-        source = source.toSource(),
+        source = source?.toSource(),
         author = author,
         title = title,
         description = description,
@@ -48,7 +48,7 @@ internal fun ArticleDTO.toArticle(): Article {
 
 internal fun ArticleDTO.toArticleDbo(): ArticleDBO {
     return ArticleDBO(
-        source = source.toSourceDbo(),
+        source = source?.toSourceDbo(),
         author = author,
         title = title,
         description = description,
