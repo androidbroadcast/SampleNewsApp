@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.Date
+import kotlinx.datetime.Instant
 
 @Entity(tableName = "articles")
 data class ArticleDBO(
@@ -14,7 +14,7 @@ data class ArticleDBO(
     @ColumnInfo("description") val description: String?,
     @ColumnInfo("url") val url: String?,
     @ColumnInfo("urlToImage") val urlToImage: String?,
-    @ColumnInfo("publishedAt") val publishedAt: Date?,
+    @ColumnInfo("publishedAt") val publishedAt: Instant?,
     @ColumnInfo("content") val content: String?,
     @PrimaryKey(autoGenerate = true) val id: Long = 0
 )

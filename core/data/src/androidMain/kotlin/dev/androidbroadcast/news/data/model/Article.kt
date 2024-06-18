@@ -1,6 +1,6 @@
 package dev.androidbroadcast.news.data.model
 
-import java.util.Date
+import kotlinx.datetime.Instant
 
 public data class Article(
     val cacheId: Long = ID_NONE,
@@ -10,7 +10,7 @@ public data class Article(
     val description: String?,
     val url: String?,
     val urlToImage: String?,
-    val publishedAt: Date?,
+    val publishedAt: Instant?,
     val content: String?
 ) {
     public companion object {

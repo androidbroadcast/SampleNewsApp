@@ -32,6 +32,7 @@ androidSdk-target = "33"
 androidSdk-min = "24"
 androidSdk-compile = "34"
 kotlinx-immutable = "0.3.7"
+kotlinx-datetime = "0.6.0"
 compose-rules = "0.4.3"
 compose-plugin = "1.6.11"
 
@@ -74,6 +75,7 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 kotlinx-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinx-immutable"}
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime"}
 
 dagger-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "dagger" }
 dagger-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "dagger" }
