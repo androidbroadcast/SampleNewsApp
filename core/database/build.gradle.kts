@@ -20,11 +20,11 @@ kotlin {
     sourceSets  {
         commonMain.dependencies {
             implementation(libs.kotlinx.datetime)
+            implementation(libs.androidx.room.ktx)
         }
 
         androidMain.dependencies {
             implementation(libs.androidx.core.ktx)
-            implementation(libs.androidx.room.ktx)
         }
     }
 }

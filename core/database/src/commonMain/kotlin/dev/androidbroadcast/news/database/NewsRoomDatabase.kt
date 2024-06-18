@@ -8,24 +8,32 @@ import androidx.room.TypeConverters
 import dev.androidbroadcast.news.database.dao.ArticleDao
 import dev.androidbroadcast.news.database.models.ArticleDBO
 import dev.androidbroadcast.news.database.utils.Converters
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 
 class NewsDatabase internal constructor(private val database: NewsRoomDatabase) {
     val articlesDao: ArticleDao
         get() = database.articlesDao()
 }
 
-@Database(entities = [ArticleDBO::class], version = 1)
+@Database(entities = [ArticleDBO::class], version = 2)
 @TypeConverters(Converters::class)
 internal abstract class NewsRoomDatabase : RoomDatabase() {
     abstract fun articlesDao(): ArticleDao
 }
 
-fun NewsDatabase(applicationContext: Context): NewsDatabase {
+fun NewsDatabase(
+    applicationContext: Context,
+    dispatcher: CoroutineDispatcher = Dispatchers.IO,
+): NewsDatabase {
     val newsRoomDatabase =
         Room.databaseBuilder(
             checkNotNull(applicationContext.applicationContext),
             NewsRoomDatabase::class.java,
             "news"
-        ).build()
+        )
+            .setQueryCoroutineContext(dispatcher)
+            .fallbackToDestructiveMigration(dropAllTables = false)
+            .build()
     return NewsDatabase(newsRoomDatabase)
 }
