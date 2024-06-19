@@ -29,15 +29,17 @@ kotlin {
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.koin.androidx.compose)
+
+            implementation(libs.androidx.lifecycle.runtime.ktx)
+            implementation(libs.androidx.lifecycle.viewmodel.ktx)
+            implementation(libs.androidx.lifecycle.viewmodel.compose)
+
+            implementation(compose.components.resources)
         }
 
         androidMain.dependencies {
             implementation(libs.androidx.core.ktx)
-            implementation(libs.androidx.lifecycle.runtime.ktx)
             implementation(libs.androidx.activity.compose)
-
-            implementation(libs.androidx.lifecycle.viewmodel.ktx)
-            implementation(libs.androidx.lifecycle.viewmodel.compose)
 
             implementation(libs.kotlinx.coroutines.android)
 
@@ -75,4 +77,12 @@ composeCompiler {
 dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.tooling.preview)
+}
+
+compose {
+    resources {
+        publicResClass = false
+        packageOfResClass = "dev.androidbroadcast.news.main.ui"
+        generateResClass = always
+    }
 }
