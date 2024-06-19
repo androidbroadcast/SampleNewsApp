@@ -18,6 +18,8 @@ kotlin {
         }
     }
 
+    jvm()
+
     sourceSets  {
         commonMain.dependencies {
             api(compose.ui)
