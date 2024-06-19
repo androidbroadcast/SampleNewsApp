@@ -22,6 +22,8 @@ kotlin {
         commonMain.dependencies {
             api(libs.kotlinx.coroutines.core)
             api(libs.kotlinx.immutable)
+            api(libs.coil.core)
+            implementation(libs.coil.network.ktor)
         }
 
         androidMain.dependencies {

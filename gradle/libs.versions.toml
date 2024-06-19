@@ -17,8 +17,7 @@ material = "1.12.0"
 room = "2.7.0-alpha04"
 ksp = "2.0.0-1.0.21"
 okhttp = "4.12.0"
-# Используем альфа версию Coil т.к. она поддерживает KMP
-coil = "2.6.0"
+coil = "3.0.0-alpha06"
 detekt = "1.23.6"
 uiautomator = "2.3.0"
 benchmarkMacroJunit4 = "1.2.4"
@@ -80,8 +79,9 @@ ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx
 okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 okhttp-logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
 
-coil-core = { module = "io.coil-kt:coil", version.ref = "coil" }
-coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+coil-core = { module = "io.coil-kt.coil3:coil", version.ref = "coil" }
+coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
+coil-network-ktor = { module = "io.coil-kt.coil3:coil-network-ktor", version.ref = "coil" }
 
 detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
 androidx-uiautomator = { group = "androidx.test.uiautomator", name = "uiautomator", version.ref = "uiautomator" }
