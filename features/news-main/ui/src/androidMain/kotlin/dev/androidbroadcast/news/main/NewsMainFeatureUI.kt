@@ -1,3 +1,5 @@
+@file:OptIn(KoinExperimentalAPI::class)
+
 package dev.androidbroadcast.news.main
 
 import androidx.compose.foundation.background
@@ -13,12 +15,19 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import dev.androidbroadcast.news.NewsTheme
+import org.koin.androidx.compose.koinViewModel
+import org.koin.compose.module.rememberKoinModules
+import org.koin.core.annotation.KoinExperimentalAPI
 
 @Composable
 fun NewsMainScreen(modifier: Modifier = Modifier) {
-    NewsMainScreen(viewModel = viewModel(), modifier = modifier)
+    rememberKoinModules {
+        listOf(
+            featuresNewsMainUiLogicKoinModule,
+        )
+    }
+    NewsMainScreen(viewModel = koinViewModel(), modifier = modifier)
 }
 
 @Composable

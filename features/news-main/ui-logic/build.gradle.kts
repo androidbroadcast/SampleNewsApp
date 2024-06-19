@@ -7,9 +7,6 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.dagger.hilt.android)
-    alias(libs.plugins.kapt)
-    // Dagger Hilt нужно будет менять на мультиплатформенное решение
 }
 
 kotlin {
@@ -26,6 +23,8 @@ kotlin {
             implementation(libs.kotlinx.coroutines.core)
             api(libs.kotlinx.immutable)
             api(projects.core.data)
+            api(libs.koin.core)
+            implementation(libs.koin.androidx.compose)
         }
 
         androidMain.dependencies {
@@ -35,8 +34,7 @@ kotlin {
 
             implementation(libs.kotlinx.coroutines.android)
 
-            compileOnly(libs.androidx.compose.runtime)
-            implementation(libs.dagger.hilt.android)
+            implementation(libs.koin.android)
         }
     }
 }
@@ -54,8 +52,4 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-}
-
-dependencies {
-    "kapt"(libs.dagger.hilt.compiler)
 }

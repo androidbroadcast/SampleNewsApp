@@ -1,8 +1,6 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    alias(libs.plugins.dagger.hilt.android)
-    alias(libs.plugins.kapt)
     alias(libs.plugins.baselineprofile)
     alias(libs.plugins.compose.compiler)
 }
@@ -84,9 +82,7 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
 
-    implementation(libs.dagger.hilt.android)
     implementation(libs.androidx.profileinstaller)
-    kapt(libs.dagger.hilt.compiler)
 
     implementation(projects.core.data)
     implementation(projects.core.opennewsApi)
@@ -98,4 +94,8 @@ dependencies {
     debugImplementation(libs.okhttp.logging.interceptor)
 
     baselineProfile(projects.baselineprofile)
+
+    implementation(libs.koin.core)
+    implementation(libs.koin.compose)
+    implementation(libs.koin.android)
 }

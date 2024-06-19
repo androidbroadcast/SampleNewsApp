@@ -1,7 +1,6 @@
 @file:OptIn(ExperimentalKotlinGradlePluginApi::class)
 
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -10,8 +9,6 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.detekt)
-    alias(libs.plugins.dagger.hilt.android)
-    alias(libs.plugins.kapt)
 }
 
 kotlin {
@@ -28,6 +25,10 @@ kotlin {
             implementation(projects.core.common)
             implementation(libs.coil.compose)
             implementation(projects.core.uikit)
+
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.androidx.compose)
         }
 
         androidMain.dependencies {
@@ -40,9 +41,10 @@ kotlin {
 
             implementation(libs.kotlinx.coroutines.android)
 
-            implementation(libs.dagger.hilt.android)
-
             implementation(project.dependencies.platform(libs.androidx.compose.bom))
+
+            implementation(libs.koin.android)
+            implementation(libs.koin.androidx.compose)
         }
     }
 }
@@ -71,7 +73,6 @@ composeCompiler {
 }
 
 dependencies {
-    "kapt"(libs.dagger.hilt.compiler)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.tooling.preview)
 }

@@ -17,9 +17,8 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.onEach
-import javax.inject.Inject
 
-public class ArticlesRepository @Inject constructor(
+public class ArticlesRepository(
     private val database: NewsDatabase,
     private val api: NewsApi,
     private val logger: Logger

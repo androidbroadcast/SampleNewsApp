@@ -7,7 +7,6 @@ plugins {
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
-    // KAPT не поддерживает KMP
 }
 
 kotlin {
