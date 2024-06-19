@@ -1,4 +1,4 @@
-package dev.androidbroadcast.common
+package dev.androidbroadcast.news.core
 
 import coil3.ImageLoader
 import coil3.PlatformContext
@@ -7,7 +7,7 @@ import coil3.memory.MemoryCache
 import coil3.request.crossfade
 import coil3.util.DebugLogger
 
-public fun newImageLoader(
+internal fun newImageLoader(
     context: PlatformContext,
     debug: Boolean,
 ): ImageLoader {

@@ -1,8 +1,6 @@
 package dev.androidbroadcast.news.database
 
-import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import dev.androidbroadcast.news.database.dao.ArticleDao
@@ -18,22 +16,18 @@ class NewsDatabase internal constructor(private val database: NewsRoomDatabase) 
 
 @Database(entities = [ArticleDBO::class], version = 2)
 @TypeConverters(Converters::class)
-internal abstract class NewsRoomDatabase : RoomDatabase() {
+abstract class NewsRoomDatabase : RoomDatabase() {
     abstract fun articlesDao(): ArticleDao
 }
 
 fun NewsDatabase(
-    applicationContext: Context,
+    databaseBuilder: RoomDatabase.Builder<NewsRoomDatabase>,
     dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ): NewsDatabase {
-    val newsRoomDatabase =
-        Room.databaseBuilder(
-            checkNotNull(applicationContext.applicationContext),
-            NewsRoomDatabase::class.java,
-            "news"
-        )
+    return NewsDatabase(
+        databaseBuilder
             .setQueryCoroutineContext(dispatcher)
             .fallbackToDestructiveMigration(dropAllTables = false)
             .build()
-    return NewsDatabase(newsRoomDatabase)
+    )
 }

@@ -35,8 +35,11 @@ include(":core:database")
 include(":core:data")
 include(":core:common")
 include(":core:uikit")
+include(":core:platform")
 
 include(":features:news-main:ui")
 include(":features:news-main:ui-logic")
 
-include(":baselineprofile")
+//include(":baselineprofile")
+include(":compose-app")
+

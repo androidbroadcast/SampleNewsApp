@@ -1,16 +1,17 @@
 @file:OptIn(ExperimentalKotlinGradlePluginApi::class)
 
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.ksp)
-    alias(libs.plugins.androidx.room)
 }
 
 kotlin {
+    explicitApi = ExplicitApiMode.Strict
+
     androidTarget {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_1_8)
@@ -19,39 +20,28 @@ kotlin {
 
     sourceSets  {
         commonMain.dependencies {
-            implementation(libs.kotlinx.datetime)
-            api(libs.androidx.room.ktx)
+            api(projects.core.common)
+            implementation(projects.core.data)
+            implementation(projects.core.database)
+            implementation(projects.core.opennewsApi)
         }
-
+        
         androidMain.dependencies {
-            implementation(libs.androidx.core.ktx)
+            implementation(libs.koin.android)
         }
     }
 }
 
 android {
-    namespace = "dev.androidbroadcast.news.database"
+    namespace = "dev.androidbroadcast.news.core.platform"
     compileSdk = libs.versions.androidSdk.min.get().toInt()
 
     defaultConfig {
         compileSdk = libs.versions.androidSdk.compile.get().toInt()
     }
 
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-        }
-    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-}
-
-room {
-    schemaDirectory("${rootProject.projectDir}/schemas")
-}
-
-dependencies {
-    ksp(libs.androidx.room.compiler)
 }

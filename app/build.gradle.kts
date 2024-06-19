@@ -84,21 +84,11 @@ dependencies {
 
     implementation(libs.androidx.profileinstaller)
 
-    implementation(projects.core.data)
-    implementation(projects.core.opennewsApi)
-    implementation(projects.features.newsMain.ui)
-    implementation(projects.core.database)
-    implementation(projects.core.common)
-    implementation(projects.core.uikit)
+//    baselineProfile(projects.baselineprofile)
+    implementation(projects.core.platform)
 
-    debugImplementation(libs.okhttp.logging.interceptor)
-
-    baselineProfile(projects.baselineprofile)
-
-    implementation(libs.koin.core)
-    implementation(libs.koin.compose)
+    implementation(projects.composeApp)
     implementation(libs.koin.android)
-
     implementation(libs.coil.core)
-    implementation(libs.ktor.client.core)
+    implementation(projects.core.common)
 }

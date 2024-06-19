@@ -1,28 +1,23 @@
 package dev.androidbroadcast.newssearchapp
 
 import android.app.Application
-import appKoinModule
-import coil3.ImageLoader
-import coil3.PlatformContext
 import coil3.SingletonImageLoader
-import dev.androidbroadcast.common.newImageLoader
+import dev.androidbroadcast.news.core.NewsAppPlatform
 import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
-import org.koin.core.context.startKoin
 
-class NewsApplication : Application(), SingletonImageLoader.Factory {
+class NewsApplication @JvmOverloads constructor(
+    private val platform: NewsAppPlatform = NewsAppPlatform()
+) : Application(), SingletonImageLoader.Factory by platform {
 
     override fun onCreate() {
         super.onCreate()
-        startKoin {
-            androidContext(this@NewsApplication)
-            modules(appKoinModule)
-            if (BuildConfig.DEBUG) {
-                androidLogger()
+        platform.start(
+            debug = BuildConfig.DEBUG,
+            newsApiKey = BuildConfig.NEWS_API_KEY,
+            newsApiBaseUrl = BuildConfig.NEWS_API_BASE_URL,
+            targetAppDeclaration = {
+                androidContext(this@NewsApplication)
             }
-        }
+        )
     }
-
-    override fun newImageLoader(context: PlatformContext): ImageLoader = newImageLoader(context, BuildConfig.DEBUG)
-
 }

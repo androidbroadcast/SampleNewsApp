@@ -1,4 +1,4 @@
-package dev.androidbroadcast.common
+package dev.androidbroadcast.news.core
 
 import coil3.PlatformContext
 import coil3.disk.DiskCache

@@ -22,13 +22,16 @@ kotlin {
         commonMain.dependencies {
             api(libs.kotlinx.coroutines.core)
             api(libs.kotlinx.immutable)
+            api(libs.kotlinx.datetime)
             api(libs.coil.core)
+            api(libs.koin.core)
             implementation(libs.coil.network.ktor)
         }
 
         androidMain.dependencies {
             implementation(libs.androidx.core.ktx)
             api(libs.kotlinx.coroutines.android)
+            api(libs.koin.android)
         }
     }
 }
