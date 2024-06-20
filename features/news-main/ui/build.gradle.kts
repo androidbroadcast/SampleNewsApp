@@ -20,6 +20,17 @@ kotlin {
 
     jvm()
 
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            baseName = "FeaturesNewsMainUi"
+            isStatic = true
+        }
+    }
+
     sourceSets  {
         commonMain.dependencies {
             implementation(projects.features.newsMain.uiLogic)
@@ -33,7 +44,6 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodel)
 
             implementation(compose.components.resources)
-            implementation(libs.androidx.lifecycle.viewmodel.compose)
         }
 
         androidMain.dependencies {

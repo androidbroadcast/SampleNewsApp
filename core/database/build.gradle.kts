@@ -19,6 +19,17 @@ kotlin {
 
     jvm()
 
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            baseName = "CoreDatabase"
+            isStatic = true
+        }
+    }
+
     sourceSets  {
         commonMain.dependencies {
             implementation(libs.kotlinx.datetime)
@@ -28,6 +39,15 @@ kotlin {
 
         androidMain.dependencies {
             implementation(libs.androidx.core.ktx)
+            implementation(libs.androidx.sqlite.bundled)
+        }
+
+        jvmMain.dependencies {
+            implementation(libs.androidx.sqlite.bundled)
+        }
+
+        iosMain.dependencies {
+            implementation(libs.androidx.sqlite.bundled)
         }
     }
 }
@@ -56,5 +76,9 @@ room {
 }
 
 dependencies {
-    ksp(libs.androidx.room.compiler)
+    add("kspJvm", libs.androidx.room.compiler)
+    add("kspAndroid", libs.androidx.room.compiler)
+    add("kspIosSimulatorArm64", libs.androidx.room.compiler)
+    add("kspIosX64", libs.androidx.room.compiler)
+    add("kspIosArm64", libs.androidx.room.compiler)
 }

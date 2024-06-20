@@ -23,6 +23,17 @@ kotlin {
 
     jvm()
 
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            baseName = "NewsComposeApp"
+            isStatic = true
+        }
+    }
+
     sourceSets  {
         commonMain.dependencies {
             implementation(projects.features.newsMain.ui)

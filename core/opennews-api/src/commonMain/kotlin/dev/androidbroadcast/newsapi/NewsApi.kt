@@ -24,6 +24,7 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.datetime.Instant
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.json.Json
+import kotlin.jvm.JvmSuppressWildcards
 
 /**
  * [API Documentation](https://newsapi.org/docs/get-started)

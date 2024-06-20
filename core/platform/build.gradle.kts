@@ -20,6 +20,17 @@ kotlin {
 
     jvm()
 
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            baseName = "CorePlatform"
+            isStatic = true
+        }
+    }
+
     sourceSets  {
         commonMain.dependencies {
             api(projects.core.common)
@@ -30,6 +41,10 @@ kotlin {
         }
 
         jvmMain.dependencies {
+            implementation(libs.androidx.sqlite.bundled)
+        }
+
+        iosMain.dependencies {
             implementation(libs.androidx.sqlite.bundled)
         }
     }
