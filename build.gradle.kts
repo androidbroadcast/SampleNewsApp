@@ -21,20 +21,47 @@ plugins {
 allprojects.onEach { project ->
     project.afterEvaluate {
         with(project.plugins) {
-            if (hasPlugin(libs.plugins.jetbrainsKotlinAndroid.get().pluginId) ||
-                hasPlugin(libs.plugins.jetbrainsKotlinJvm.get().pluginId)
+            if (hasPlugin(
+                    libs.plugins.jetbrainsKotlinAndroid
+                        .get()
+                        .pluginId
+                ) ||
+                hasPlugin(
+                    libs.plugins.jetbrainsKotlinJvm
+                        .get()
+                        .pluginId
+                )
             ) {
-                apply(libs.plugins.detekt.get().pluginId)
+                apply(
+                    libs.plugins.detekt
+                        .get()
+                        .pluginId
+                )
 
                 project.extensions.configure<DetektExtension> {
                     config.setFrom(rootProject.files("default-detekt-config.yml"))
                 }
 
-                project.dependencies.add("detektPlugins", libs.detekt.formatting.get().toString())
+                project.dependencies.add(
+                    "detektPlugins",
+                    libs.detekt.formatting
+                        .get()
+                        .toString()
+                )
             }
 
-            if (hasPlugin(libs.plugins.compose.compiler.get().pluginId)) {
-                project.dependencies.add("detektPlugins", libs.detekt.rules.compose.get().toString())
+            if (hasPlugin(
+                    libs.plugins.compose.compiler
+                        .get()
+                        .pluginId
+                )
+            ) {
+                project.dependencies.add(
+                    "detektPlugins",
+                    libs.detekt.rules.compose
+                        .get()
+                        .toString()
+                )
             }
         }
     }

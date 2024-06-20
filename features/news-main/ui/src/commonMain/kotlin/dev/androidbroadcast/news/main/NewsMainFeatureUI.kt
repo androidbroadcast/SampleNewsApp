@@ -16,8 +16,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import dev.androidbroadcast.news.NewsTheme
-import org.koin.androidx.compose.koinViewModel
 import org.koin.compose.module.rememberKoinModules
+import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.annotation.KoinExperimentalAPI
 
 @Composable

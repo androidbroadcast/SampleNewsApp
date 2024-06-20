@@ -6,6 +6,7 @@ import coil3.SingletonImageLoader
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.KoinScopeComponent
 import org.koin.core.context.startKoin
+import org.koin.core.logger.Level
 import org.koin.core.scope.Scope
 import org.koin.dsl.KoinAppDeclaration
 
@@ -37,14 +38,17 @@ public class NewsAppPlatform :
                 )
             )
 
+            if (debug) {
+                printLogger(Level.DEBUG)
+            }
+
             targetAppDeclaration()
         }
     }
 
-    override fun newImageLoader(context: PlatformContext): ImageLoader {
-        return newImageLoader(
+    override fun newImageLoader(context: PlatformContext): ImageLoader =
+        newImageLoader(
             context,
             debug = getKoin().getProperty(ConfigProperties.NewsPlatform.Debug, false)
         )
-    }
 }

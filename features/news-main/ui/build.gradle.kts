@@ -18,35 +18,29 @@ kotlin {
         }
     }
 
+    jvm()
+
     sourceSets  {
         commonMain.dependencies {
-            implementation(libs.kotlinx.coroutines.core)
             implementation(projects.features.newsMain.uiLogic)
             implementation(projects.core.common)
             implementation(libs.coil.compose)
             implementation(projects.core.uikit)
 
-            implementation(libs.koin.core)
             implementation(libs.koin.compose)
-            implementation(libs.koin.androidx.compose)
 
-            implementation(libs.androidx.lifecycle.runtime.ktx)
-            implementation(libs.androidx.lifecycle.viewmodel.ktx)
-            implementation(libs.androidx.lifecycle.viewmodel.compose)
+            implementation(libs.androidx.lifecycle.runtime)
+            implementation(libs.androidx.lifecycle.viewmodel)
 
             implementation(compose.components.resources)
+            implementation(libs.androidx.lifecycle.viewmodel.compose)
         }
 
         androidMain.dependencies {
             implementation(libs.androidx.core.ktx)
             implementation(libs.androidx.activity.compose)
 
-            implementation(libs.kotlinx.coroutines.android)
-
             implementation(project.dependencies.platform(libs.androidx.compose.bom))
-
-            implementation(libs.koin.android)
-            implementation(libs.koin.androidx.compose)
         }
     }
 }

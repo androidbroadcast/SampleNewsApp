@@ -18,16 +18,19 @@ kotlin {
         }
     }
 
+    jvm()
+
     sourceSets  {
         commonMain.dependencies {
             api(projects.core.common)
+            implementation(libs.coil.compose)
             implementation(projects.core.data)
             implementation(projects.core.database)
             implementation(projects.core.opennewsApi)
         }
-        
-        androidMain.dependencies {
-            implementation(libs.koin.android)
+
+        jvmMain.dependencies {
+            implementation(libs.androidx.sqlite.bundled)
         }
     }
 }

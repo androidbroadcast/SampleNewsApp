@@ -17,10 +17,13 @@ kotlin {
         }
     }
 
+    jvm()
+
     sourceSets  {
         commonMain.dependencies {
             implementation(libs.kotlinx.datetime)
-            api(libs.androidx.room.ktx)
+            api(libs.androidx.room.common)
+            api(libs.androidx.room.runtime)
         }
 
         androidMain.dependencies {

@@ -18,38 +18,52 @@ kotlin {
         }
     }
 
-    sourceSets  {
+    jvm()
+
+    sourceSets {
         commonMain.dependencies {
-            implementation(libs.kotlinx.coroutines.core)
-            api(libs.kotlinx.immutable)
             api(projects.core.data)
-            api(libs.koin.core)
-            implementation(libs.koin.androidx.compose)
+            api(projects.core.common)
+            implementation(libs.androidx.lifecycle.runtime)
+            implementation(libs.androidx.lifecycle.viewmodel)
+            api(libs.koin.compose.viewmodel)
         }
 
         androidMain.dependencies {
             implementation(libs.androidx.core.ktx)
-            implementation(libs.androidx.lifecycle.runtime.ktx)
-            implementation(libs.androidx.lifecycle.viewmodel.ktx)
-
-            implementation(libs.kotlinx.coroutines.android)
-
-            implementation(libs.koin.android)
+            api(libs.koin.androidx.compose)
+            api(libs.koin.android)
         }
     }
 }
 
 android {
     namespace = "dev.androidbroadcast.news.main.uilogic"
-    compileSdk = libs.versions.androidSdk.min.get().toInt()
+    compileSdk =
+        libs.versions.androidSdk.min
+            .get()
+            .toInt()
 
     defaultConfig {
-        compileSdk = libs.versions.androidSdk.compile.get().toInt()
+        compileSdk =
+            libs.versions.androidSdk.compile
+                .get()
+                .toInt()
         consumerProguardFiles("consumer-rules.pro")
     }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+}
+
+configurations.all {
+    resolutionStrategy.eachDependency {
+        if (requested.name.startsWith("lifecycle-runtime-ktx")) {
+            useTarget("androidx.lifecycle:${requested.name.replace("lifecycle-runtime-ktx", "lifecycle-runtime")}:${requested.version}")
+        } else if (requested.name.startsWith("lifecycle-viewmodel-ktx")) {
+            useTarget("androidx.lifecycle:${requested.name.replace("lifecycle-viewmodel-ktx", "lifecycle-runtime")}:${requested.version}")
+        }
     }
 }

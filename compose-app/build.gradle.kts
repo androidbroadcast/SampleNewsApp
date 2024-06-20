@@ -21,22 +21,16 @@ kotlin {
         }
     }
 
+    jvm()
+
     sourceSets  {
         commonMain.dependencies {
             implementation(projects.features.newsMain.ui)
-            implementation(projects.core.database)
             implementation(projects.core.common)
             implementation(projects.core.uikit)
-            implementation(projects.core.data)
-            implementation(projects.core.opennewsApi)
 
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
-
-            implementation(libs.coil.core)
-            implementation(libs.ktor.client.core)
-
-            implementation(libs.androidx.room.ktx)
         }
 
         androidMain.dependencies {

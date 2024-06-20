@@ -18,6 +18,8 @@ kotlin {
         }
     }
 
+    jvm()
+
     sourceSets  {
         commonMain.dependencies {
             api(libs.kotlinx.coroutines.core)
@@ -32,6 +34,10 @@ kotlin {
             implementation(libs.androidx.core.ktx)
             api(libs.kotlinx.coroutines.android)
             api(libs.koin.android)
+        }
+
+        jvmMain.dependencies {
+            api(libs.kotlinx.coroutines.swing)
         }
     }
 }
