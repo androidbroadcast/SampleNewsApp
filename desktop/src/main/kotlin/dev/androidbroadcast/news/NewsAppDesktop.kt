@@ -5,7 +5,7 @@ import androidx.compose.ui.window.application
 import dev.androidbroadcast.news.compose.NewsApp
 import dev.androidbroadcast.news.core.NewsAppPlatform
 
-fun main(): Unit {
+fun main() {
     val platform = NewsAppPlatform()
     platform.start(
         debug = true,
