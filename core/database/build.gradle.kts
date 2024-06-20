@@ -31,10 +31,15 @@ kotlin {
     }
 
     sourceSets  {
-        commonMain.dependencies {
-            implementation(libs.kotlinx.datetime)
-            api(libs.androidx.room.common)
-            api(libs.androidx.room.runtime)
+        commonMain {
+            // Room
+            kotlin.srcDir("build/generated/ksp/metadata")
+
+            dependencies {
+                implementation(libs.kotlinx.datetime)
+                api(libs.androidx.room.common)
+                api(libs.androidx.room.runtime)
+            }
         }
 
         androidMain.dependencies {
@@ -81,4 +86,6 @@ dependencies {
     add("kspIosSimulatorArm64", libs.androidx.room.compiler)
     add("kspIosX64", libs.androidx.room.compiler)
     add("kspIosArm64", libs.androidx.room.compiler)
+    // Room
+    add("kspCommonMainMetadata", libs.androidx.room.compiler)
 }
