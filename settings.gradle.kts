@@ -45,3 +45,4 @@ include(":features:news-main:ui-logic")
 include(":compose-app")
 
 include(":desktop")
+include(":shared")

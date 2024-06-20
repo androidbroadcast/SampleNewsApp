@@ -8,6 +8,7 @@ import dev.androidbroadcast.news.database.models.ArticleDBO
 import dev.androidbroadcast.news.database.utils.Converters
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
 
 class NewsDatabase internal constructor(private val database: NewsRoomDatabase) {
     val articlesDao: ArticleDao
@@ -31,3 +32,5 @@ fun NewsDatabase(
             .build()
     )
 }
+
+public expect fun instantiateNewsRoomDatabase(): NewsRoomDatabase

@@ -23,18 +23,23 @@ kotlin {
 
     jvm()
 
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            baseName = "ComposeApp"
+            isStatic = true
+        }
+    }
+
     sourceSets  {
         commonMain.dependencies {
             implementation(projects.features.newsMain.ui)
             implementation(projects.core.common)
             implementation(projects.core.uikit)
-
-            implementation(libs.koin.core)
             implementation(libs.koin.compose)
-        }
-
-        androidMain.dependencies {
-            implementation(libs.koin.android)
         }
     }
 }

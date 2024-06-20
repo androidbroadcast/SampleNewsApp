@@ -18,6 +18,17 @@ kotlin {
 
     jvm()
 
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            baseName = "CoreOpenNewsApi"
+            isStatic = true
+        }
+    }
+
     sourceSets {
         commonMain.dependencies {
             implementation(libs.kotlinx.coroutines.core)
@@ -36,6 +47,10 @@ kotlin {
 
         jvmMain.dependencies {
             implementation(libs.ktor.client.okhttp)
+        }
+
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
         }
     }
 }

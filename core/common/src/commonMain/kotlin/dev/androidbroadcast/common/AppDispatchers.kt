@@ -2,6 +2,7 @@ package dev.androidbroadcast.common
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
 import kotlinx.coroutines.MainCoroutineDispatcher
 
 public class AppDispatchers(
