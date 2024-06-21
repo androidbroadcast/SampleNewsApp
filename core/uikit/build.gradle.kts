@@ -37,11 +37,13 @@ kotlin {
             api(compose.runtime)
             api(compose.foundation)
             api(compose.material3)
-            api(compose.uiUtil)
-            implementation(compose.components.uiToolingPreview)
+            api(compose.components.resources)
+            api(compose.components.uiToolingPreview)
         }
 
         androidMain.dependencies {
+            implementation(compose.preview)
+
             implementation(libs.androidx.core.ktx)
             // Need only for debug
             implementation(libs.androidx.compose.ui.tooling)
@@ -63,5 +65,13 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        compose = true
+    }
+
+    dependencies {
+        debugImplementation(compose.uiTooling)
     }
 }
