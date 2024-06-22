@@ -9,8 +9,3 @@ internal actual fun dynamicColorScheme(darkTheme: Boolean): ColorScheme {
 }
 
 internal actual fun isPlatformWithDynamicSystemTheme(): Boolean = false
-
-@Composable
-internal actual fun platformThemeSetup(darkTheme: Boolean, colorScheme: ColorScheme) {
-    // Do nothing
-}

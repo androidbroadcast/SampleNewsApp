@@ -39,12 +39,6 @@ internal expect fun isPlatformWithDynamicSystemTheme(): Boolean
 internal expect fun dynamicColorScheme(darkTheme: Boolean): ColorScheme
 
 @Composable
-internal expect fun platformThemeSetup(
-    darkTheme: Boolean,
-    colorScheme: ColorScheme,
-)
-
-@Composable
 fun NewsTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
@@ -57,8 +51,6 @@ fun NewsTheme(
             darkTheme -> DarkColorScheme
             else -> LightColorScheme
         }
-
-    platformThemeSetup(darkTheme, colorScheme)
 
     MaterialTheme(
         colorScheme = colorScheme,

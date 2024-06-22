@@ -22,18 +22,3 @@ internal actual fun dynamicColorScheme(darkTheme: Boolean): ColorScheme {
 internal actual fun isPlatformWithDynamicSystemTheme(): Boolean {
     return Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
 }
-
-@Composable
-internal actual fun platformThemeSetup(
-    darkTheme: Boolean,
-    colorScheme: ColorScheme,
-) {
-    val view = LocalView.current
-    if (!view.isInEditMode) {
-        SideEffect {
-            val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
-        }
-    }
-}
