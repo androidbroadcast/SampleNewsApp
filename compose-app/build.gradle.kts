@@ -46,10 +46,10 @@ kotlin {
 
 android {
     namespace = "dev.androidbroadcast.news.compose"
-    compileSdk = libs.versions.androidSdk.min.get().toInt()
+    compileSdk = libs.versions.androidSdk.compile.get().toInt()
 
     defaultConfig {
-        compileSdk = libs.versions.androidSdk.compile.get().toInt()
+        minSdk = libs.versions.androidSdk.min.get().toInt()
     }
 
     compileOptions {
