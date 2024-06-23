@@ -3,6 +3,7 @@ import dev.androidbroadcast.news.compose.NewsApp
 import dev.androidbroadcast.news.core.NewsAppPlatform
 import platform.UIKit.UIViewController
 
+@Suppress("unused", "FunctionName")
 fun MainViewController(): UIViewController {
     val appPlatform = NewsAppPlatform()
     appPlatform.start(

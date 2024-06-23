@@ -12,6 +12,7 @@ fun main() {
         newsApiKey = "155ae65d7264461397c901103488c01e",
         newsApiBaseUrl = "https://newsapi.org/v2/"
     )
+
     application {
         Window(onCloseRequest = ::exitApplication) {
             NewsApp()

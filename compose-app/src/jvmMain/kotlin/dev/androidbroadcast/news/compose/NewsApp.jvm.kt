@@ -7,5 +7,5 @@ internal actual fun NewsPlatformTheme(
     darkTheme: Boolean,
     content: @Composable () -> Unit,
 ) {
-    // Do nothing
+    content()
 }
