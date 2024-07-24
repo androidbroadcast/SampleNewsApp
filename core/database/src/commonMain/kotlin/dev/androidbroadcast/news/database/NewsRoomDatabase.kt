@@ -32,5 +32,3 @@ fun NewsDatabase(
             .build()
     )
 }
-
-public expect fun instantiateNewsRoomDatabase(): NewsRoomDatabase

@@ -7,22 +7,17 @@ import dev.androidbroadcast.common.Logger
 import dev.androidbroadcast.common.PrintLogger
 import dev.androidbroadcast.news.database.NewsRoomDatabase
 import dev.androidbroadcast.news.database.instantiateNewsRoomDatabase
-import org.koin.core.module.Module
-import org.koin.dsl.module
 import platform.Foundation.NSHomeDirectory
 
-/**
- * Koin Module with target platform specifics dependencies
- */
-internal actual val targetKoinModule: Module = module {
-    factory<RoomDatabase.Builder<NewsRoomDatabase>> {
-        Room.databaseBuilder<NewsRoomDatabase>(
+internal actual class TargetKoinDependencies {
+    actual fun newsRoomDatabaseBuilder(): RoomDatabase.Builder<NewsRoomDatabase> {
+        return Room.databaseBuilder<NewsRoomDatabase>(
             name = "${NSHomeDirectory()}/news.db",
             factory =  { instantiateNewsRoomDatabase() }
         ).setDriver(BundledSQLiteDriver())
     }
 
-    factory<Logger> {
-        PrintLogger()
+    actual fun logger(): Logger {
+        return PrintLogger()
     }
 }

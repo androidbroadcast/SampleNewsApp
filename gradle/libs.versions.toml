@@ -107,6 +107,9 @@ koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compos
 koin-compose = { group = "io.insert-koin", name = "koin-compose", version.ref = 'koin-compose' }
 koin-compose-viewmodel  = { group = "io.insert-koin", name = "koin-compose-viewmodel", version.ref = 'koin-compose' }
 
+gradlePlugins-android = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
+gradlePlugins-kotlin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
