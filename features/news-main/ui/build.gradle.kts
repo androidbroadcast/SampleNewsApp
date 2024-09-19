@@ -18,12 +18,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "21"
     }
 
     buildFeatures {
@@ -31,9 +31,11 @@ android {
     }
 }
 
-composeCompiler {
-    enableStrongSkippingMode = true
+kotlin {
+    jvmToolchain(21)
+}
 
+composeCompiler {
     reportsDestination = layout.buildDirectory.dir("compose_compiler")
 }
 
