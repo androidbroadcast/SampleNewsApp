@@ -1,3 +1,4 @@
+import dev.iurysouza.modulegraph.Orientation
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
@@ -58,13 +59,13 @@ moduleGraphConfig {
     readmePath.set("./README.md")
     heading = "### Module Graph"
     // showFullPath.set(false) // optional
-    // orientation.set(Orientation.LEFT_TO_RIGHT) //optional
+     orientation.set(Orientation.RIGHT_TO_LEFT) //optional
     // linkText.set(LinkText.NONE) // optional
     // setStyleByModuleType.set(true) // optional
     // excludedConfigurationsRegex.set(".*test.*") // optional
     // excludedModulesRegex.set(".*moduleName.*") // optional
     // focusedModulesRegex.set(".*(projectName).*") // optional
-    // rootModulesRegex.set(".*moduleName.*") // optional
+     rootModulesRegex.set(".*app.*") // optional
     // theme.set(Theme.NEUTRAL) // optional
     // or you can fully customize it by using the BASE theme:
     // Theme.BASE(
