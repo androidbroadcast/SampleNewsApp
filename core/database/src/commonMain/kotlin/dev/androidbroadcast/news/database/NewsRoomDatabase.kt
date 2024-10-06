@@ -1,7 +1,9 @@
 package dev.androidbroadcast.news.database
 
+import androidx.room.ConstructedBy
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.RoomDatabaseConstructor
 import androidx.room.TypeConverters
 import dev.androidbroadcast.news.database.dao.ArticleDao
 import dev.androidbroadcast.news.database.models.ArticleDBO
@@ -17,8 +19,15 @@ class NewsDatabase internal constructor(private val database: NewsRoomDatabase) 
 
 @Database(entities = [ArticleDBO::class], version = 2)
 @TypeConverters(Converters::class)
+@ConstructedBy(NewsRoomDatabaseConstructor::class)
 abstract class NewsRoomDatabase : RoomDatabase() {
     abstract fun articlesDao(): ArticleDao
+}
+
+// The Room compiler generates the `actual` implementations.
+@Suppress("NO_ACTUAL_FOR_EXPECT")
+expect object NewsRoomDatabaseConstructor : RoomDatabaseConstructor<NewsRoomDatabase> {
+    override fun initialize(): NewsRoomDatabase
 }
 
 fun NewsDatabase(

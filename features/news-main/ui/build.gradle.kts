@@ -14,7 +14,7 @@ plugins {
 kotlin {
     androidTarget {
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_1_8)
+            jvmTarget.set(JvmTarget.JVM_21)
         }
     }
 
@@ -64,8 +64,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
 
     buildFeatures {
@@ -78,19 +78,10 @@ android {
 }
 
 composeCompiler {
-    enableStrongSkippingMode = true
     reportsDestination = layout.buildDirectory.dir("compose_compiler")
 }
 
 dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.tooling.preview)
-}
-
-compose {
-    resources {
-        publicResClass = false
-        packageOfResClass = "dev.androidbroadcast.news.main.ui"
-        generateResClass = always
-    }
 }

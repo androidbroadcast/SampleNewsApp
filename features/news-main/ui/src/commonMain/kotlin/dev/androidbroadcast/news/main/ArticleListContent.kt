@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,9 +24,6 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import coil3.compose.AsyncImagePainter
 import dev.androidbroadcast.news.NewsTheme
-import dev.androidbroadcast.news.main.ui.Res
-import dev.androidbroadcast.news.main.ui.content_desc_item_article_image
-import org.jetbrains.compose.resources.stringResource
 
 @Composable
 internal fun ArticleList(
@@ -74,7 +70,7 @@ internal fun Article(
                                 isImageVisible = false
                             }
                         },
-                        contentDescription = stringResource(Res.string.content_desc_item_article_image),
+                        contentDescription = "",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier.size(150.dp)
                     )
