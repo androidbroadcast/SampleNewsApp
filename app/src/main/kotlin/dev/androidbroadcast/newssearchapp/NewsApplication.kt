@@ -3,7 +3,6 @@ package dev.androidbroadcast.newssearchapp
 import android.app.Application
 import coil3.SingletonImageLoader
 import dev.androidbroadcast.news.core.NewsAppPlatform
-import org.koin.android.ext.koin.androidContext
 
 class NewsApplication @JvmOverloads constructor(
     private val platform: NewsAppPlatform = NewsAppPlatform()
@@ -15,9 +14,7 @@ class NewsApplication @JvmOverloads constructor(
             debug = BuildConfig.DEBUG,
             newsApiKey = BuildConfig.NEWS_API_KEY,
             newsApiBaseUrl = BuildConfig.NEWS_API_BASE_URL,
-            targetAppDeclaration = {
-                androidContext(this@NewsApplication)
-            }
+            platformContext = this
         )
     }
 }

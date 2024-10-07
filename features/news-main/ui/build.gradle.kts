@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.detekt)
+    alias(libs.plugins.ksp)
 }
 
 kotlin {
@@ -21,7 +22,6 @@ kotlin {
     jvm()
 
     listOf(
-        iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach { iosTarget ->
@@ -38,12 +38,13 @@ kotlin {
             implementation(libs.coil.compose)
             implementation(projects.core.uikit)
 
-            implementation(libs.koin.compose)
-
             implementation(libs.androidx.lifecycle.runtime)
             implementation(libs.androidx.lifecycle.viewmodel)
+            implementation(libs.jetbrains.lifecycle.viewmodel.compose)
 
             implementation(compose.components.resources)
+
+            implementation(projects.core.platform)
         }
 
         androidMain.dependencies {
@@ -84,4 +85,13 @@ composeCompiler {
 dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.tooling.preview)
+
+    // 1. Configure code generation into the common source set
+//    kspCommonMainMetadata(libs.kotlinInject.compiler)
+
+    // 2. Configure code generation into each KMP target source set
+    "kspAndroid"(libs.kotlinInject.compiler)
+    "kspIosArm64"(libs.kotlinInject.compiler)
+    "kspIosSimulatorArm64"(libs.kotlinInject.compiler)
+    "kspJvm"(libs.kotlinInject.compiler)
 }

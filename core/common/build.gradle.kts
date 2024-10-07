@@ -21,7 +21,6 @@ kotlin {
     jvm()
 
     listOf(
-        iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach { iosTarget ->
@@ -37,14 +36,13 @@ kotlin {
             api(libs.kotlinx.immutable)
             api(libs.kotlinx.datetime)
             api(libs.coil.core)
-            api(libs.koin.core)
+            api(libs.kotlinInject.runtime)
             implementation(libs.coil.network.ktor)
         }
 
         androidMain.dependencies {
             implementation(libs.androidx.core.ktx)
             api(libs.kotlinx.coroutines.android)
-            api(libs.koin.android)
         }
 
         jvmMain.dependencies {

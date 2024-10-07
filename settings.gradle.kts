@@ -29,7 +29,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "NewsSearchApp"
-include(":app")
+//include(":app")
 
 include(":core:opennews-api")
 include(":core:database")

@@ -1,13 +1,14 @@
 [versions]
 agp = "8.3.2"
 annotation = "1.8.2"
-kotlin = "2.0.20"
-kotlin-serialization-json = "1.6.3"
+kotlin = "2.0.21-RC"
+kotlin-serialization-json = "1.7.1"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 androidx-lifecycle = "2.8.6"
+jetbrains-lifecycle = "2.8.0"
 activityCompose = "1.9.2"
 composeBom = "2024.09.03"
 androidx-compose-runtime = "1.7.3"
@@ -15,7 +16,7 @@ kotlinx-coroutines = "1.9.0"
 appcompat = "1.7.0"
 material = "1.12.0"
 room = "2.7.0-alpha09"
-ksp = "2.0.20-1.0.25"
+ksp = "2.0.21-RC-1.0.25"
 okhttp = "4.12.0"
 coil = "3.0.0-alpha06"
 detekt = "1.23.6"
@@ -31,9 +32,8 @@ kotlinx-datetime = "0.6.0"
 compose-rules = "0.4.3"
 compose-plugin = "1.6.11"
 ktor = "2.3.11"
-koin = "3.6.0-Beta4"
-koin-compose = "1.2.0-Beta4"
 sqlite = "2.5.0-alpha09"
+kotlinInject = "0.7.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -59,6 +59,8 @@ androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmode
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-viewmodel-compose-android = { module = "androidx.lifecycle:lifecycle-viewmodel-compose-android", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-viewmodel-compose-desktop = { module = "androidx.lifecycle:lifecycle-viewmodel-compose-desktop", version.ref = "androidx-lifecycle" }
+
+jetbrains-lifecycle-viewmodel-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "jetbrains-lifecycle" }
 
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
@@ -101,11 +103,8 @@ androidx-profileinstaller = { group = "androidx.profileinstaller", name = "profi
 
 detekt-rules-compose = { module = "io.nlopez.compose.rules:detekt", version.ref = "compose-rules" }
 
-koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = 'koin' }
-koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = 'koin' }
-koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = 'koin' }
-koin-compose = { group = "io.insert-koin", name = "koin-compose", version.ref = 'koin-compose' }
-koin-compose-viewmodel  = { group = "io.insert-koin", name = "koin-compose-viewmodel", version.ref = 'koin-compose' }
+kotlinInject-compiler = { group = "me.tatarka.inject", name = "kotlin-inject-compiler-ksp", version.ref = 'kotlinInject' }
+kotlinInject-runtime = { group = "me.tatarka.inject", name = "kotlin-inject-runtime-kmp", version.ref = 'kotlinInject' }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

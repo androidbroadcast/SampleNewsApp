@@ -7,15 +7,15 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
+import me.tatarka.inject.annotations.Inject
 
-public class NewsMainViewModel internal constructor() : ViewModel(), KoinComponent {
-
-    private val getAllArticlesUseCase: GetAllArticlesUseCase by inject()
+@Inject
+public class NewsMainViewModel internal constructor(
+    private val getAllArticlesUseCase: Lazy<GetAllArticlesUseCase>
+) : ViewModel() {
 
     public val state: StateFlow<State> =
-        getAllArticlesUseCase.invoke(query = "android")
+        getAllArticlesUseCase.value.invoke(query = "android")
             .map(RequestResult<List<ArticleUI>>::toState)
             .stateIn(viewModelScope, SharingStarted.Lazily, State.None)
 }
