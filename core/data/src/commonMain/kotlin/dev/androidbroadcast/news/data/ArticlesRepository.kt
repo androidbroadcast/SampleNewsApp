@@ -1,6 +1,7 @@
 package dev.androidbroadcast.news.data
 
 import dev.androidbroadcast.common.Logger
+import dev.androidbroadcast.common.Singleton
 import dev.androidbroadcast.news.data.model.Article
 import dev.androidbroadcast.news.database.NewsDatabase
 import dev.androidbroadcast.news.database.models.ArticleDBO
@@ -17,7 +18,9 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.onEach
+import me.tatarka.inject.annotations.Inject
 
+@Inject
 public class ArticlesRepository(
     private val database: NewsDatabase,
     private val api: NewsApi,

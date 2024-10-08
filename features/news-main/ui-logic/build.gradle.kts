@@ -7,10 +7,11 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.ksp)
 }
 
 kotlin {
-    explicitApi = ExplicitApiMode.Strict
+//    explicitApi = ExplicitApiMode.Strict
 
     androidTarget {
         compilerOptions {
@@ -21,7 +22,6 @@ kotlin {
     jvm()
 
     listOf(
-        iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach { iosTarget ->
@@ -35,15 +35,16 @@ kotlin {
         commonMain.dependencies {
             api(projects.core.data)
             api(projects.core.common)
+            api(projects.core.database)
+            api(projects.core.opennewsApi)
             implementation(libs.androidx.lifecycle.runtime)
             implementation(libs.androidx.lifecycle.viewmodel)
-            api(libs.koin.compose.viewmodel)
+
+            implementation(projects.core.platform)
         }
 
         androidMain.dependencies {
             implementation(libs.androidx.core.ktx)
-            api(libs.koin.androidx.compose)
-            api(libs.koin.android)
         }
     }
 }
@@ -71,4 +72,11 @@ configurations.all {
             useTarget("androidx.lifecycle:${requested.name.replace("lifecycle-viewmodel-ktx", "lifecycle-runtime")}:${requested.version}")
         }
     }
+}
+
+dependencies {
+    "kspAndroid"(libs.kotlinInject.compiler)
+    "kspIosArm64"(libs.kotlinInject.compiler)
+    "kspIosSimulatorArm64"(libs.kotlinInject.compiler)
+    "kspJvm"(libs.kotlinInject.compiler)
 }

@@ -7,6 +7,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.ksp)
 }
 
 kotlin {
@@ -21,7 +22,6 @@ kotlin {
     jvm()
 
     listOf(
-        iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach { iosTarget ->
@@ -36,8 +36,6 @@ kotlin {
             api(projects.core.common)
             implementation(libs.coil.compose)
             implementation(projects.core.data)
-            implementation(projects.core.database)
-            implementation(projects.core.opennewsApi)
         }
 
         jvmMain.dependencies {
@@ -62,4 +60,11 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+}
+
+dependencies {
+    "kspAndroid"(libs.kotlinInject.compiler)
+    "kspIosArm64"(libs.kotlinInject.compiler)
+    "kspIosSimulatorArm64"(libs.kotlinInject.compiler)
+    "kspJvm"(libs.kotlinInject.compiler)
 }

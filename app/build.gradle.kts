@@ -63,6 +63,8 @@ android {
 
     packaging {
         resources {
+
+
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
             excludes += "/okhttp3/internal/publicsuffix/NOTICE"
             excludes += "/kotlin/**"
@@ -88,7 +90,6 @@ dependencies {
     implementation(projects.core.platform)
 
     implementation(projects.composeApp)
-    implementation(libs.koin.android)
     implementation(libs.coil.core)
     implementation(projects.core.common)
 }

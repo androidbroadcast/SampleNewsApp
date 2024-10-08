@@ -8,7 +8,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import dev.androidbroadcast.news.NewsTheme
 import dev.androidbroadcast.news.main.NewsMainScreen
-import org.koin.compose.KoinContext
 
 /**
  * Setup theme for platform
@@ -29,9 +28,7 @@ public fun NewsApp() {
                 modifier = Modifier.fillMaxSize(),
                 color = MaterialTheme.colorScheme.background
             ) {
-                KoinContext {
-                    NewsMainScreen()
-                }
+                NewsMainScreen()
             }
         }
     }

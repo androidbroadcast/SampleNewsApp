@@ -24,7 +24,6 @@ kotlin {
     jvm()
 
     listOf(
-        iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach { iosTarget ->
@@ -39,7 +38,6 @@ kotlin {
             implementation(projects.features.newsMain.ui)
             implementation(projects.core.common)
             implementation(projects.core.uikit)
-            implementation(libs.koin.compose)
         }
     }
 }

@@ -5,7 +5,9 @@ import dev.androidbroadcast.news.data.RequestResult
 import dev.androidbroadcast.news.data.map
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import me.tatarka.inject.annotations.Inject
 
+@Inject
 internal class GetAllArticlesUseCase(
     private val repository: ArticlesRepository
 ) {

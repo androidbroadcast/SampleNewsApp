@@ -1,5 +1,3 @@
-@file:OptIn(KoinExperimentalAPI::class)
-
 package dev.androidbroadcast.news.main
 
 import androidx.compose.foundation.background
@@ -12,22 +10,34 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import dev.androidbroadcast.news.NewsTheme
-import org.koin.compose.module.rememberKoinModules
-import org.koin.compose.viewmodel.koinViewModel
-import org.koin.core.annotation.KoinExperimentalAPI
+import dev.androidbroadcast.news.core.AppComponent
+import dev.androidbroadcast.news.data.ArticlesRepository
+import dev.androidbroadcast.news.main.di.NewsMainComponent
+import dev.androidbroadcast.news.main.di.createNewsMainComponent
+
+private class NewsMainComponentDepsImpl(
+    private val appComponent: AppComponent
+) : NewsMainComponent.Deps {
+
+    override val articlesRepository: ArticlesRepository
+        get() = appComponent.articlesRepository
+}
 
 @Composable
 fun NewsMainScreen(modifier: Modifier = Modifier) {
-    rememberKoinModules {
-        listOf(
-            featuresNewsMainUiLogicKoinModule,
-        )
+    val component: NewsMainComponent = remember {
+        createNewsMainComponent(NewsMainComponentDepsImpl(AppComponent.appComponent))
     }
-    NewsMainScreen(viewModel = koinViewModel(), modifier = modifier)
+    NewsMainScreen(
+        viewModel = viewModel { component.newsMainViewModel },
+        modifier = modifier
+    )
 }
 
 @Composable
