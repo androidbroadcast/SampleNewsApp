@@ -1,6 +1,9 @@
 [versions]
 agp = "8.3.2"
+amplitude-analytics = "1.19.1"
+appmetrica = "7.2.2"
 annotation = "1.9.0"
+firebaseBom = "33.5.1"
 kotlin = "2.0.20"
 kotlin-serialization-json = "1.7.1"
 coreKtx = "1.13.1"
@@ -34,10 +37,14 @@ kotlinx-immutable = "0.3.7"
 compose-rules = "0.4.3"
 
 [libraries]
+amplitude-analytics = { module = "com.amplitude:analytics-android", version.ref = "amplitude-analytics" }
+appmetrica-analytics = { module = "io.appmetrica.analytics:analytics", version.ref = "appmetrica" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 
+firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 
 androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }

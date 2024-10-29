@@ -1,5 +1,6 @@
 package dev.androidbroadcast.news.main
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -9,6 +10,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
@@ -28,21 +30,30 @@ import dev.androidbroadcast.news.NewsTheme
 @Composable
 internal fun ArticleList(
     articleState: State.Success,
+    onItemClicked: (ArticleUI) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
-    ArticleList(articles = articleState.articles, modifier)
+    ArticleList(
+        articles = articleState.articles,
+        onItemClicked = onItemClicked,
+        modifier
+    )
 }
 
 @Preview
 @Composable
 internal fun ArticleList(
     @PreviewParameter(ArticlesPreviewProvider::class, limit = 1) articles: List<ArticleUI>,
+    onItemClicked: (ArticleUI) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     LazyColumn(modifier) {
         items(articles) { article ->
             key(article.id) {
-                Article(article)
+                Article(
+                    article,
+                    Modifier.clickable { onItemClicked(article) }
+                )
             }
         }
     }
