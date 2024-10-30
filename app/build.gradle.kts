@@ -105,4 +105,7 @@ dependencies {
     debugImplementation(libs.okhttp.logging.interceptor)
 
     baselineProfile(projects.baselineprofile)
+
+    implementation(projects.analyticsCore)
+    implementation(projects.firebaseAnalytics)
 }

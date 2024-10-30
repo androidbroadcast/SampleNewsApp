@@ -60,5 +60,5 @@ dependencies {
     implementation(libs.coil.compose)
     implementation(projects.core.common)
 
-    implementation(projects.newsAnalytics)
+    implementation(projects.analyticsCore)
 }

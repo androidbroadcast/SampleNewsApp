@@ -9,6 +9,7 @@ import dagger.hilt.components.SingletonComponent
 import dev.androidbroadcast.common.AndroidLogcatLogger
 import dev.androidbroadcast.common.AppDispatchers
 import dev.androidbroadcast.common.Logger
+import dev.androidbroadcast.news.analytics.AnalyticsTracker
 import dev.androidbroadcast.news.database.NewsDatabase
 import dev.androidbroadcast.newsapi.NewsApi
 import okhttp3.OkHttpClient
@@ -25,6 +26,14 @@ object AppModule {
             apiKey = BuildConfig.NEWS_API_KEY,
             okHttpClient = okHttpClient
         )
+    }
+
+    @Provides
+    @Singleton
+    fun provideAnalyticsTracker(
+        @ApplicationContext context: Context
+    ): AnalyticsTracker {
+        return AnalyticsTracker.loadAvailable(context)
     }
 
     @Provides

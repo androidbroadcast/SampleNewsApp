@@ -40,4 +40,5 @@ include(":features:news-main:ui")
 include(":features:news-main:ui-logic")
 
 include(":baselineprofile")
-include(":news-analytics")
+include(":analytics-core")
+include(":firebase-analytics")

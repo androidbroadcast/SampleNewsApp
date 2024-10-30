@@ -45,5 +45,5 @@ dependencies {
 
     implementation(libs.dagger.hilt.android)
     kapt(libs.dagger.hilt.compiler)
-    implementation(projects.newsAnalytics)
+    implementation(projects.analyticsCore)
 }
